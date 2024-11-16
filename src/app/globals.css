@@ -17,5 +17,79 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* welcome */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Pacifico&display=swap');
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ارتفاع الشاشة بالكامل */
+    background-color: #f0f0f0; /* لون خلفية فاتح */
+  }
+  
+  .welcome-content img{
+    border-radius:20px;
+  }
+ 
+  
+  .welcome-logo {
+    width: 200px; /* تعديل عرض اللوجو */
+    height: auto; /* الحفاظ على نسبة الطول إلى العرض */
+  }
+  /* Animation Keyframes */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px) ;
+  }
+  60% {
+    transform: translateY(-10px) ;
+  }
+}
+
+/* تطبيق الرسوم المتحركة على الشعار */
+.welcome-logo {
+    width: 200px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+  .welcome-title {
+    font-size: 2rem; /* حجم خط أكبر */
+    color: #333; /* لون خط */
+    margin-top: -80px; /* مساحة فوق العنوان */
+    font-family: 'Pacifico', cursive;
+  }
+  .link-to-login{
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 10px 30px;
+    border-radius: 20px;
+    
+  }
+/* welcome */
+
+svg{
+  width: 20px;
+}
+
+/* CSS لإخفاء شريط التمرير */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* إخفاء شريط التمرير في المتصفحات المبنية على WebKit */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* إخفاء شريط التمرير في IE و Edge */
+  scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
 }

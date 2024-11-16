@@ -1,0 +1,78 @@
+/* location.css */
+
+.container_loc{
+    width: 100vw; /* اجعل العنصر يأخذ عرض الشاشة بالكامل */
+    height: 100vh; /* اجعل العنصر يأخذ ارتفاع الشاشة بالكامل */
+    display: flex;
+    align-items: center; /* محاذاة العناصر رأسياً */
+    justify-content: center; /* محاذاة العناصر أفقيًا */
+    background-color: #f9f9f9; /* لون الخلفية */
+    padding: 20px;
+    box-sizing: border-box; /* يتضمن البادينغ في العرض الإجمالي */
+}
+
+
+
+.title {
+    font-size: 24px; /* حجم الخط */
+    margin-bottom: 20px; /* مساحة أسفل العنوان */
+    color: #333; /* لون النص */
+}
+
+.error {
+    color: red; /* لون الرسالة الخطأ */
+    margin: 10px 0; /* مساحة حول الرسالة */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* تغيير إلى عمود في الشاشات الصغيرة */
+    justify-content:center;
+    gap: 10px; /* مساحة بين الأزرار */
+    margin-top: 20px; /* مساحة فوق الأزرار */
+}
+
+.button {
+    
+    padding: 10px 20px; /* padding حول الأزرار */
+    font-size: 16px; /* حجم الخط */
+    border: none; /* إزالة الحدود */
+    border-radius: 5px; /* زوايا دائرية */
+    cursor: pointer; /* تغيير المؤشر عند التحويم */
+    transition: background-color 0.3s, transform 0.2s; /* تأثير عند التحويم */
+}
+
+.button.allow {
+    background-color: #4CAF50; /* لون الزر للسماح */
+    color: white; /* لون النص */
+}
+
+.button.allow:hover {
+    background-color: #45a049; /* لون الزر عند التحويم */
+    transform: scale(1.05); /* تكبير الزر عند التحويم */
+}
+
+.button.deny {
+    background-color: #f44336; /* لون الزر للرفض */
+    color: white; /* لون النص */
+}
+
+.button.deny:hover {
+    background-color: #e53935; /* لون الزر عند التحويم */
+    transform: scale(1.05); /* تكبير الزر عند التحويم */
+}
+
+.denied {
+    color: #f44336; /* لون النص للرفض */
+}
+
+/* استعلامات وسائل الإعلام للتصميم المتجاوب */
+@media (min-width: 600px) {
+    .button-container {
+        flex-direction: row; /* العودة إلى الاتجاه الأفقي في الشاشات الكبيرة */
+    }
+    
+    .button {
+        width: auto; /* استعادة العرض التلقائي للأزرار */
+    }
+}

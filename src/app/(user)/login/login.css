@@ -1,0 +1,86 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; /* ارتفاع الشاشة بالكامل */
+    background-color: #f0f0f0; /* لون خلفية فاتح */
+  }
+  
+  .login-content {
+    text-align: center; /* توسيط النص */
+    width: 300px; /* عرض محدد للمحتوى */
+  }
+  
+  .login-logo {
+    width: 150px; /* تعديل عرض اللوجو */
+    height: auto; /* الحفاظ على نسبة الطول إلى العرض */
+    margin-bottom: 20px;
+    border-radius: 20px;
+    margin: auto;
+  }
+  .Or_Div{
+    margin-bottom: 30px;
+  }
+  
+  .login-title {
+    font-size: 2rem; /* حجم خط أكبر */
+    color: #333; /* لون خط */
+    margin-bottom: 20px; /* مساحة تحت العنوان */
+  }
+  
+  .input-fields {
+    display: flex;
+    flex-direction: column; /* وضع الحقول في عمود */
+    gap: 15px; /* مساحة بين الحقول */
+    margin-bottom: 20px; /* مساحة تحت الحقول */
+  }
+  
+  .login-input {
+    padding: 10px; /* حشوة للحقل */
+    border: 1px solid #ccc; /* حدود الحقل */
+    border-radius: 5px; /* حواف دائرية */
+    font-size: 1rem; /* حجم خط الحقل */
+  }
+  
+  .login-submit-button {
+    padding: 10px 120px; /* حشوة للزر */
+    border: none; /* إزالة الحدود */
+    border-radius: 5px; /* حواف دائرية */
+    cursor: pointer; /* تغيير المؤشر عند التمرير فوق الزر */
+    font-size: 1rem; /* حجم خط الزر */
+    color: white; /* لون النص في الزر */
+    background-color:#F98C53    ; /* لون زر تسجيل الدخول */
+    margin-bottom: 15px; /* مساحة تحت الزر */
+  }
+  
+  .social-login {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;/* وضع الأزرار في عمود */
+    gap: 15px; /* مساحة بين الأزرار */
+  }
+  
+  .social-button {
+    display: flex;
+    align-items: center; /* توسيط الأيقونات مع النص */
+    padding: 10px; /* حشوة للزر */
+    border: none; /* إزالة الحدود */
+    border-radius: 5px; /* حواف دائرية */
+    cursor: pointer; /* تغيير المؤشر عند التمرير فوق الزر */
+    font-size: 1rem; /* حجم خط الزر */
+    color: white; /* لون النص في الأزرار */
+    margin-bottom: 30px;
+  }
+  
+
+  .social-icon {
+    width: 30px; /* عرض الأيقونة */
+    height: 30px; /* ارتفاع الأيقونة */
+    margin-right: 10px; /* مساحة بين الأيقونة والنص */
+  }
+  .link-sign-up{
+    text-decoration: none;
+    color: #F98C53 ;
+  }

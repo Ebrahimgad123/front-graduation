@@ -1,0 +1,10 @@
+/* في ملف CSS الخاص بك، مثل styles.css أو styles.module.css */
+.scrollbar-hidden {
+    -ms-overflow-style: none; /* لإخفاء شريط التمرير في Internet Explorer و Edge */
+    scrollbar-width: none; /* لإخفاء شريط التمرير في Firefox */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* لإخفاء شريط التمرير في Chrome و Safari */
+  }
+  
