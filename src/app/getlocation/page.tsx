@@ -18,53 +18,42 @@ const Page: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch(); // الحصول على الدالة dispatch
 
-  const handleAllow = async () => {
+  const handleLocationRequest = () => {
     setLoading(true); // بدء حالة التحميل
     if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentCoordinates: Coordinates = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setMarkerPosition(currentCoordinates);
+          setIsAllowed(true);
+          dispatch(setLocation(currentCoordinates));
+          router.push('/homeApp'); 
+          setLoading(false); // انتهاء حالة التحميل
+        },
+        (err) => {
+          setError(err.message);
+          setIsAllowed(false);
+          setLoading(false); // انتهاء حالة التحميل
+        }
+      );
+    } else {
+      setError('Geolocation is not supported by this browser.');
+      setIsAllowed(false);
+      setLoading(false); // انتهاء حالة التحميل
+    }
+  };
+
+  const handleAllow = async () => {
+    if (navigator.permissions) {
       try {
         const permission = await navigator.permissions.query({ name: 'geolocation' });
-        
-        if (permission.state === 'granted') {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const currentCoordinates: Coordinates = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
-              setMarkerPosition(currentCoordinates);
-              setIsAllowed(true);
-              dispatch(setLocation(currentCoordinates));
-              router.push('/homeApp'); 
-              setLoading(false); 
-            },
-            (err) => {
-              setError(err.message);
-              setIsAllowed(false);
-              setLoading(false); // انتهاء حالة التحميل
-            }
-          );
-        } else if (permission.state === 'prompt') {
-          // إذا كانت الحالة "prompt"، يمكننا طلب الموقع
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const currentCoordinates: Coordinates = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
-              setMarkerPosition(currentCoordinates);
-              setIsAllowed(true);
-              dispatch(setLocation(currentCoordinates));
-              router.push('/homeApp'); // إعادة توجيه إلى صفحة الخريطة
-              setLoading(false); // انتهاء حالة التحميل
-            },
-            (err) => {
-              setError(err.message);
-              setIsAllowed(false);
-              setLoading(false); // انتهاء حالة التحميل
-            }
-          );
+        if (permission.state === 'granted' || permission.state === 'prompt') {
+          handleLocationRequest();
         } else {
-          setError('Access to location has been denied.'); 
+          setError('Access to location has been denied.');
           setIsAllowed(false);
           setLoading(false); // انتهاء حالة التحميل
         }
@@ -73,9 +62,7 @@ const Page: React.FC = () => {
         setLoading(false); // انتهاء حالة التحميل
       }
     } else {
-      setError('Geolocation is not supported by this browser.');
-      setIsAllowed(false);
-      setLoading(false); // انتهاء حالة التحميل
+      handleLocationRequest();
     }
   };
 

@@ -1,9 +1,15 @@
-import React from 'react'
-import  Map  from '../../../component/Map'
-const page = () => {
-  return (
-    <div>  <Map/></div>
-  )
-}
+"use client"
+import dynamic from 'next/dynamic';
 
-export default page
+// استيراد المكون ديناميكيًا مع تعطيل الـ SSR
+const LeafletMap = dynamic(() => import('../../../component/Map'), { ssr: false });
+
+const Page = () => {
+  return (
+    <div>
+      <LeafletMap />
+    </div>
+  );
+};
+
+export default Page;

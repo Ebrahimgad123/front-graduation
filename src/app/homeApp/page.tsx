@@ -79,7 +79,7 @@ const TravelApp = () => {
   const filteredDestinations = search? destinations.filter(destination =>
          destination.name.toLowerCase().includes(search.toLowerCase())
        ): destinations;
-
+     
 
      const favorites = useSelector((state: RootState) => state.favorites.items);
   return (

@@ -10,14 +10,17 @@ interface FavoritesState {
   items: FavoriteItem[];
 }
 
-// استرجاع الـ items من localStorage عند تحميل التطبيق
+// دالة لاسترجاع العناصر من localStorage عند التفاعل مع المتصفح
 const getFavoritesFromLocalStorage = (): FavoriteItem[] => {
-  const favorites = localStorage.getItem('favorites');
-  return favorites ? JSON.parse(favorites) : [];
+  if (typeof window !== 'undefined') {
+    const favorites = localStorage.getItem('favorites');
+    return favorites ? JSON.parse(favorites) : [];
+  }
+  return []; // العودة إلى قائمة فارغة في حالة بيئة الخادم
 };
 
 const initialState: FavoritesState = {
-  items: getFavoritesFromLocalStorage(),
+  items: [], // القيمة الافتراضية فارغة
 };
 
 const favoritesSlice = createSlice({
@@ -29,19 +32,29 @@ const favoritesSlice = createSlice({
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {
         state.items.push(newItem);
-        localStorage.setItem('favorites', JSON.stringify(state.items));
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('favorites', JSON.stringify(state.items));
+        }
       }
     },
     removeFavorite(state, action: PayloadAction<number>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
-      localStorage.setItem('favorites', JSON.stringify(state.items));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('favorites', JSON.stringify(state.items));
+      }
     },
     clearFavorites(state) {
       state.items = [];
-      localStorage.setItem('favorites', JSON.stringify(state.items));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('favorites', JSON.stringify(state.items));
+      }
     },
+    // دالة لتحميل الـ favorites من localStorage بعد تحميل الصفحة
+    loadFavorites(state) {
+      state.items = getFavoritesFromLocalStorage();
+    }
   },
 });
 
-export const { addFavorite, removeFavorite, clearFavorites } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, clearFavorites, loadFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;
