@@ -85,7 +85,7 @@ const TravelApp = () => {
   return (
     <div className="p-4">
       <div className="flex items-center justify-between mb-4">
-       <div onClick={()=>{router.push('/homeApp/favorites')}} className=" cursor-pointer flex items-center bg-red-700 p-1 rounded-full ml-9">
+       <div onClick={()=>{router.push('/homeApp/favorites')}} className=" cursor-pointer flex items-center bg-red-700 p-1 rounded-full ml-0">
          <FontAwesomeIcon icon={faHeart} className="text-white" />
          <button  className="mb-2 text-white ">{favorites.length}</button>
        </div>
