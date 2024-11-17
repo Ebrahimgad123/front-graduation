@@ -126,14 +126,14 @@ const TravelApp = () => {
           height={300}
           src="/Images/welcome.jpg"
           alt="World map with regions labeled"
-          className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
+          className="w-[100%] h-[400px] rounded-lg sm:w-[45%]"
         />
         <Image
          width={300}
          height={300}
           src="/Images/map.jpg"
           alt="World map with regions labeled"
-          className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
+          className="w-[100%] h-[400px] rounded-lg sm:w-[45%] "
         />
       </div>
 
