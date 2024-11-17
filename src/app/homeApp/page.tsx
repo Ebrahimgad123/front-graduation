@@ -124,17 +124,17 @@ const TravelApp = () => {
         </div>
       </div>
       <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
-  <img
-    src="/Images/welcome.jpg"
-    alt="World map with regions labeled"
-    className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
-  />
-  <img
-    src="/Images/map.jpg"
-    alt="World map with regions labeled"
-    className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
-  />
-</div>
+        <img
+          src="/Images/welcome.jpg"
+          alt="World map with regions labeled"
+          className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
+        />
+        <img
+          src="/Images/map.jpg"
+          alt="World map with regions labeled"
+          className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
+        />
+      </div>
 
     
       <div className="flex items-center mb-4">
