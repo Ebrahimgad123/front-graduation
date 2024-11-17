@@ -197,7 +197,7 @@ const TravelApp = () => {
         ))}
       </div>
 
-      <h2 className="text-xl font-bold mb-4">ٌRecommended Based on Your Location</h2>
+      <h2 className="text-xl font-bold mb-4">Recommended Places</h2>
       <div className="flex overflow-x-auto mb-4" style={{ scrollSnapType: "x mandatory" }}>
   {destinations.map((destination, index) => (
     <div
@@ -222,8 +222,14 @@ const TravelApp = () => {
       </div>
 
         <div className="absolute bottom-2 left-2 bg-black text-white px-2 py-1 rounded-full">
-          <FontAwesomeIcon icon={faLocationArrow} />{" "}
-            <bdi>كم</bdi>{destination.distanceFromUser}
+         
+          {localStorage.getItem('location') ? (
+              <>
+                <FontAwesomeIcon icon={faLocationArrow} />{" "}
+                <bdi>{destination.distanceFromUser} كم</bdi>
+              </>
+            ) : ''}
+
         </div>
       </div>
       <div className="mt-2 mb-24">

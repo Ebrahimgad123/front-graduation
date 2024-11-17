@@ -67,27 +67,28 @@ const Page: React.FC = () => {
   };
 
   const handleDeny = () => {
-    setError("You denied access to your location. Please allow it for better experience.");
-    setIsAllowed(false);
+    localStorage.removeItem('location');
+    router.push('/homeApp'); 
   };
 
   return (
-    <div className="container_loc">
-      <div className="content">
-        <h2 className="title">Allow TravMate to access this device location?</h2>
-        {loading && <p>Loading...</p>}
-        {error && <p className="error" aria-live="polite">{error}</p>}
-        {isAllowed === null && (
-          <div className="button-container">
-            <button className="button allow" onClick={handleAllow}>Allow</button>
-            <button className="button deny" onClick={handleDeny}>Don’t Allow</button>
-          </div>
-        )}
-        {isAllowed === false && (
-          <p>Please enable location access in your browser settings.</p>
-        )}
+<div className="container_loc">
+  <div className="content">
+    <h2 className="title">Would you like to search for nearby places or perform a general search?</h2>
+    {loading && <p>Loading...</p>}
+    {error && <p className="error" aria-live="polite">{error}</p>}
+    {isAllowed === null && (
+      <div className="button-container">
+        <button className="button allow" onClick={handleAllow}>Near By</button>
+        <button className="button deny" onClick={handleDeny}>General Search</button>
       </div>
-    </div>
+    )}
+    {isAllowed === false && (
+      <p>Please enable location access in your browser settings.</p>
+    )}
+  </div>
+</div>
+
   );
 };
 
