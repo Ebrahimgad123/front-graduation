@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectLocation } from '../store/locationSlice';
 import './style.css'
 import { useDispatch } from 'react-redux';
-import { addFavorite} from "../store/favoritesSlice";
+import { addFavorite, loadFavorites} from "../store/favoritesSlice";
 import { RootState } from "../store/store";
 interface Destination {
   _id: number;
@@ -80,8 +80,11 @@ const TravelApp = () => {
          destination.name.toLowerCase().includes(search.toLowerCase())
        ): destinations;
      
-
+   
      const favorites = useSelector((state: RootState) => state.favorites.items);
+     useEffect(() => {
+      dispatch(loadFavorites());
+    }, [dispatch]);
   return (
     <div className="p-4">
       <div className="flex items-center justify-between mb-4">
