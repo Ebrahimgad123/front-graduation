@@ -16,11 +16,11 @@ const getFavoritesFromLocalStorage = (): FavoriteItem[] => {
     const favorites = localStorage.getItem('favorites');
     return favorites ? JSON.parse(favorites) : [];
   }
-  return []; // العودة إلى قائمة فارغة في حالة بيئة الخادم
+  return []; 
 };
 
 const initialState: FavoritesState = {
-  items: [], // القيمة الافتراضية فارغة
+  items: [], 
 };
 
 const favoritesSlice = createSlice({

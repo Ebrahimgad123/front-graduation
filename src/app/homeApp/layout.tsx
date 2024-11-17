@@ -24,7 +24,7 @@ export default function SubFolderLayout({
               icon={faUser}
               className="text-blue-500 hover:text-blue-500 text-xl "
             /> 
-            <span className="text-gray-500 text-sm ">profile</span>
+            <span className="block text-gray-500 text-sm ">profile</span>
           </Link>
         </div>
         <div className="flex items-center text-center">
