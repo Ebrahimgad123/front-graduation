@@ -1,3 +1,4 @@
+"use client"
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface FavoriteItem {
@@ -10,17 +11,31 @@ interface FavoritesState {
   items: FavoriteItem[];
 }
 
-// دالة لاسترجاع العناصر من localStorage عند التفاعل مع المتصفح
 const getFavoritesFromLocalStorage = (): FavoriteItem[] => {
-  if (typeof window !== 'undefined') {
-    const favorites = localStorage.getItem('favorites');
-    return favorites ? JSON.parse(favorites) : [];
+  try {
+    if (typeof window !== 'undefined') {
+      const favorites = localStorage.getItem('favorites');
+      return favorites ? JSON.parse(favorites) : [];
+    }
+  } catch (error) {
+    console.error("Failed to load favorites from localStorage", error);
   }
-  return []; 
+  return [];
+};
+
+// دالة لتحديث localStorage مع معالجة الأخطاء
+const updateLocalStorage = (items: FavoriteItem[]) => {
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('favorites', JSON.stringify(items));
+    }
+  } catch (error) {
+    console.error("Failed to update localStorage", error);
+  }
 };
 
 const initialState: FavoritesState = {
-  items: [], 
+  items: getFavoritesFromLocalStorage(), // تحميل البيانات مباشرة عند بدء التطبيق
 };
 
 const favoritesSlice = createSlice({
@@ -32,29 +47,19 @@ const favoritesSlice = createSlice({
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {
         state.items.push(newItem);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('favorites', JSON.stringify(state.items));
-        }
+        updateLocalStorage(state.items);
       }
     },
     removeFavorite(state, action: PayloadAction<number>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('favorites', JSON.stringify(state.items));
-      }
+      updateLocalStorage(state.items);
     },
     clearFavorites(state) {
       state.items = [];
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('favorites', JSON.stringify(state.items));
-      }
+      updateLocalStorage(state.items);
     },
-    // دالة لتحميل الـ favorites من localStorage بعد تحميل الصفحة
-    loadFavorites(state) {
-      state.items = getFavoritesFromLocalStorage();
-    }
   },
 });
 
-export const { addFavorite, removeFavorite, clearFavorites, loadFavorites } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, clearFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;

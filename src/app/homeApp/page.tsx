@@ -2,10 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
   faHeart,
-  faMap,
-  faCompass,
   faSearch,
   faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,8 +11,9 @@ import { useSelector } from 'react-redux';
 import { selectLocation } from '../store/locationSlice';
 import './style.css'
 import { useDispatch } from 'react-redux';
-import { addFavorite, loadFavorites} from "../store/favoritesSlice";
+import { addFavorite} from "../store/favoritesSlice";
 import { RootState } from "../store/store";
+import Image from 'next/image'
 interface Destination {
   _id: number;
   name: string;
@@ -29,20 +27,21 @@ const TravelApp = () => {
   const [search, setSearch] = useState('');
   const coordinates= useSelector(selectLocation);
   console.log(coordinates);
+  const favorites = useSelector((state: RootState) => state.favorites.items);
  
   useEffect(() => {
     const fetchCities = async () => {
       if (coordinates && coordinates.lat && coordinates.lng) {
         try {
-          const response = await fetch(`https://backend-graduation.up.railway.app/api/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
+          const response = await fetch(
+            `https://backend-graduation.up.railway.app/api/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+          );
+          if (!response.ok) throw new Error("Network response was not ok");
+
           const cities = await response.json();
           setDestinations(cities);
-          console.log(cities);
         } catch (error) {
-          console.error('Error fetching cities:', error);
+          console.error("Error fetching cities:", error);
         }
       }
     };
@@ -81,10 +80,8 @@ const TravelApp = () => {
        ): destinations;
      
    
-     const favorites = useSelector((state: RootState) => state.favorites.items);
-     useEffect(() => {
-      dispatch(loadFavorites());
-    }, [dispatch]);
+    
+   
   return (
     <div className="p-4">
       <div className="flex items-center justify-between mb-4">
@@ -124,12 +121,16 @@ const TravelApp = () => {
         </div>
       </div>
       <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
-        <img
+        <Image
+          width={300}
+          height={300}
           src="/Images/welcome.jpg"
           alt="World map with regions labeled"
           className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
         />
-        <img
+        <Image
+         width={300}
+         height={300}
           src="/Images/map.jpg"
           alt="World map with regions labeled"
           className="w-[90%] h-[400px] rounded-lg sm:w-[45%]"
@@ -163,7 +164,7 @@ const TravelApp = () => {
         ))}
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Discover</h2>
+      <h2 className="text-xl font-bold mb-4">ٌRecommended Based on Your Location</h2>
       <div className="flex overflow-x-auto mb-4" style={{ scrollSnapType: "x mandatory" }}>
   {destinations.map((destination, index) => (
     <div

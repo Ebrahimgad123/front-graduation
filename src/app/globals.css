@@ -69,15 +69,7 @@ body {
     margin-top: -80px; /* مساحة فوق العنوان */
     font-family: 'Pacifico', cursive;
   }
-  .link-to-login{
-    margin-top: 10px;
-    text-decoration: none;
-    color: white;
-    background-color: #333;
-    padding: 10px 30px;
-    border-radius: 20px;
-    
-  }
+
 /* welcome */
 
 svg{

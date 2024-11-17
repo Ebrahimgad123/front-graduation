@@ -1,7 +1,7 @@
 "use client"; // تأكد من وجود هذه العبارة لتحديد المكون كجزء من جانب العميل
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavorite, clearFavorites, loadFavorites } from '../../store/favoritesSlice'; // تأكد من استيراد الأكشنز
+import { removeFavorite, clearFavorites } from '../../store/favoritesSlice'; // تأكد من استيراد الأكشنز
 import { useRouter } from 'next/navigation'; // تأكد من استخدام next/navigation في حال كنت تستخدم app directory
 
 interface FavoriteItem {
@@ -16,14 +16,6 @@ const FavoritesPage = () => {
 
   // جلب العناصر المفضلة من Redux
   const favorites = useSelector((state: any) => state.favorites.items);
-
-  // تحميل المفضلات عند تحميل الصفحة
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // هنا نقوم بتحميل المفضلات فقط بعد تحميل الصفحة في المتصفح
-      dispatch(loadFavorites());
-    }
-  }, [dispatch]);
 
   // دالة إزالة عنصر من المفضلة
   const handleRemoveFavorite = (id: number) => {
