@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useSelector } from "react-redux";
 import { selectLocation } from '../app/store/locationSlice';
-
+import './Map.css'
 declare global {
   interface HTMLElement {
     _leaflet_id?: number;
@@ -71,7 +71,7 @@ const LeafletMap = () => {
    dragging={true}
    zoomControl={true}
    doubleClickZoom={false} // إلغاء التكبير بالنقر المزدوج
-   style={{ height: "650px", width: "100%" }}
+  //  style={{ height: "660px", width: "100%" }}
 >
 
         <TileLayer
