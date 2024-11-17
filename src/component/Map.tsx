@@ -71,7 +71,7 @@ const LeafletMap = () => {
    dragging={true}
    zoomControl={true}
    doubleClickZoom={false} // إلغاء التكبير بالنقر المزدوج
-  //  style={{ height: "660px", width: "100%" }}
+   style={{ height: "660px", width: "100%" }}
 >
 
         <TileLayer
