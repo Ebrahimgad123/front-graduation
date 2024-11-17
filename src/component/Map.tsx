@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useSelector } from "react-redux";
 import { selectLocation } from '../app/store/locationSlice';
-import './Map.css'
+
 declare global {
   interface HTMLElement {
     _leaflet_id?: number;
