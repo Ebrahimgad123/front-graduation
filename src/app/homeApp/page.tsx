@@ -5,6 +5,8 @@ import {
   faHeart,
   faSearch,
   faLocationArrow,
+  faCog,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import { useSelector } from 'react-redux'; 
@@ -14,6 +16,9 @@ import { useDispatch } from 'react-redux';
 import { addFavorite} from "../store/favoritesSlice";
 import { RootState } from "../store/store";
 import Image from 'next/image'
+import { toggleDarkMode } from '../store/themeSlice';
+import { Button } from "@mui/material";
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 interface Destination {
   _id: number;
   name: string;
@@ -79,16 +84,44 @@ const TravelApp = () => {
          destination.name.toLowerCase().includes(search.toLowerCase())
        ): destinations;
      
-   
-    
+       const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+       const darkMode = useSelector((state: RootState) => state.theme.darkMode);
+       const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
    
   return (
     <div className="p-4">
-      <div className="flex items-center justify-between mb-4">
-       <div onClick={()=>{router.push('/homeApp/favorites')}} className=" cursor-pointer flex items-center bg-red-700 p-1 rounded-full ">
-         <FontAwesomeIcon icon={faHeart} className="text-white" />
-         <button  className="mb-2 text-white ">{favorites.length}</button>
-       </div>
+     <div className="flex justify-between items-center">
+    
+     <div className="relative flex items-center justify-around mb-4">
+      <div>
+        <Button
+          className=" ml-0"
+          sx={{ mt: 3 }}
+          onClick={toggleDropdown} 
+          startIcon={<FontAwesomeIcon icon={faCog} />}
+        >
+          Menu
+        </Button>
+
+   
+        {isDropdownOpen && (
+          <div className="absolute left-5 mt-2 bg-white shadow-lg rounded-md w-40 p-2 z-10">
+            <div className="flex items-center space-x-4 cursor-pointer" onClick={() => dispatch(toggleDarkMode())}>
+              {darkMode ? <Brightness7 className="text-green-600" /> : <Brightness4 className="text-blue-400"/>}
+              <span className="text-sm text-black">Change Theme</span>
+            </div>
+            <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/favorites')}>
+              <FontAwesomeIcon className="text-red-500" icon={faHeart} />
+              <span className="text-sm text-black">Favorites{`(${favorites.length})`}</span>
+            </div>
+            <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/profile')}>
+              <FontAwesomeIcon className="text-blue-500" icon={faUser} />
+              <span className="text-sm text-black">Profile</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
        <div className="relative">
          <input
             onChange={(e) => setSearch(e.target.value)}
@@ -102,7 +135,7 @@ const TravelApp = () => {
             {filteredDestinations.length > 0 ? (
               filteredDestinations.map((destination) => (
                 <li key={destination._id} className="flex justify-between items-center p-2 hover:bg-gray-100 rounded-lg">
-                  <span className="text-lg font-medium">{destination.name}</span>
+                  <span className="text-lg font-medium  text-black">{destination.name}</span>
                   <img
                     src={destination.image}
                     alt={destination.name}
@@ -136,7 +169,7 @@ const TravelApp = () => {
           className="w-[100%] h-[400px] rounded-lg sm:w-[45%] "
         />
       </div>
-
+      
     
       <div className="flex items-center mb-4">
         <button className="bg-gray-200 px-4 py-2 rounded-full">Cairo</button>
@@ -149,8 +182,8 @@ const TravelApp = () => {
           className="w-[50px] h-[50px] rounded-[100%]  mr-4"
         />
         <div>
-          <span className="block">dicover {destinations.length} destination in </span>
-          <span className="block font-bold">Egypt</span>
+          <span className="block text-black">dicover {destinations.length} destination in </span>
+          <span className="block font-bold  text-black">Egypt</span>
         </div>
         <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
       </div>

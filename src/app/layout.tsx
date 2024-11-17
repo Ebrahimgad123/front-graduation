@@ -1,10 +1,13 @@
-"use client"
-import localFont from "next/font/local";
-import "./globals.css";
-import { Provider } from 'react-redux';
+'use client';
+import { Provider, useSelector } from 'react-redux';
+import localFont from 'next/font/local';
+import './globals.css';
 import store from './store/store';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { lightTheme, darkTheme } from './theme'; // تأكد من وجود هذه الملفات
+import { RootState } from './store/store'; // استيراد RootState
 
-
+// تحميل الخطوط المحلية
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -17,10 +20,23 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
+  // تحديد النوع للـ state باستخدام RootState
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
+};
+
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode; // إضافة نوع children هنا
 }) {
   return (
     <Provider store={store}>
@@ -29,8 +45,9 @@ export default function RootLayout({
           <title>Trav mate</title>
           <meta name="description" />
         </head>
-        <body  className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
-          {children}
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+          {/* تغليف المحتوى بـ ThemeWrapper لضمان تطبيق الـ Dark Mode */}
+          <ThemeWrapper>{children}</ThemeWrapper>
         </body>
       </html>
     </Provider>
