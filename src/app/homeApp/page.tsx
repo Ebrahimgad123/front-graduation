@@ -39,7 +39,7 @@ const TravelApp = () => {
       if (coordinates && coordinates.lat && coordinates.lng) {
         try {
           const response = await fetch(
-            `https://backend-graduation.up.railway.app/api/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+            `https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
           );
           if (!response.ok) throw new Error("Network response was not ok");
 
