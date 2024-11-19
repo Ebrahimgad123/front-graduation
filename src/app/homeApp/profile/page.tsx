@@ -4,20 +4,14 @@ import { useRouter } from "next/navigation";
 
 // تعريف نوع المستخدم (User)
 interface User {
-  _id: string;
-  profilePicture: string;
-  firstName: string;
-  lastName: string;
+  displayName: string;
   email: string;
-  emailStatus: boolean;
-  phoneNumber: string | null;
-  createdAt: string;
-  updatedAt: string;
+  profilePicture: string;
 }
 
 const Profile = () => {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null); // تحديد نوع الحالة
+  const [user, setUser] = useState<User | null>(null); // حالة المستخدم
 
   useEffect(() => {
     // عند تحميل الصفحة، حاول جلب البيانات من الـ API
@@ -25,28 +19,26 @@ const Profile = () => {
       try {
         const response = await fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', { 
           method: 'GET', 
-          credentials: 'include' 
+          credentials: 'include' // إرسال الـ credentials مع الطلب
         });
-        const requestOptions = {
-          method: 'GET',
-          credentials: 'include' // هنا يتم تحديد الـ credentials
-        };
-      
-        console.log("Request Options: ", requestOptions);
-        
+
         if (response.ok) {
           const userData: User = await response.json(); // تحديد نوع البيانات المسترجعة
           setUser(userData);
+        } else {
+          console.error("فشل جلب البيانات: غير متاح.");
+          router.push('/login'); // إعادة التوجيه إلى صفحة الدخول إذا فشل الحصول على البيانات
         }
       } catch (error) {
-        console.error("Error fetching profile:", error);
-        router.push('/login');
+        console.error("حدث خطأ أثناء جلب البيانات:", error);
+        router.push('/login'); // في حالة حدوث خطأ، إعادة التوجيه إلى صفحة الدخول
       }
     };
 
-    fetchUserProfile();
+    fetchUserProfile(); // استدعاء دالة جلب البيانات
   }, [router]);
 
+  // عرض رسالة أثناء تحميل البيانات
   if (!user) return <p>جاري تحميل البيانات...</p>;
 
   return (
@@ -55,10 +47,8 @@ const Profile = () => {
       <div className="profile-info">
         <img src={user.profilePicture} alt="Profile Picture" className="profile-image" />
         <div className="profile-details">
-          <p><strong>الاسم:</strong> {user.firstName} {user.lastName}</p>
+          <p><strong>الاسم:</strong> {user.displayName}</p>
           <p><strong>البريد الإلكتروني:</strong> {user.email}</p>
-          <p><strong>رقم الهاتف:</strong> {user.phoneNumber || "غير محدد"}</p>
-          <p><strong>تاريخ الانضمام:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
         </div>
       </div>
       <button onClick={handleLogout} className="logout-button">تسجيل الخروج</button>
@@ -67,7 +57,7 @@ const Profile = () => {
 
   // وظيفة لتسجيل الخروج
   async function handleLogout() {
-    await fetch('/api/auth/logout', { method: 'GET', credentials: 'include' });
+    await fetch('/api/auth/logout', { method: 'GET', credentials: 'include' }); // إرسال طلب لتسجيل الخروج
     router.push('/login'); // إعادة توجيه المستخدم إلى صفحة الدخول بعد الخروج
   }
 };
