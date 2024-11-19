@@ -23,7 +23,11 @@ const Profile = () => {
     // عند تحميل الصفحة، حاول جلب البيانات من الـ API
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', { method: 'GET', credentials: 'include' });
+        const response = await fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', { 
+          method: 'GET', 
+          credentials: 'include' 
+        });
+
         if (response.ok) {
           const userData: User = await response.json(); // تحديد نوع البيانات المسترجعة
           setUser(userData);
