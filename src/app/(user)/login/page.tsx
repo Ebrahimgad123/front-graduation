@@ -15,7 +15,7 @@ const Login = () => {
       try {
         const response = await fetch("https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile", {
           method: "GET", // طلب للحصول على بيانات المستخدم
-          credentials: "include", // لتضمين الجلسة في الطلب
+          credentials: "include", 
         });
 
         if (response.ok) {
