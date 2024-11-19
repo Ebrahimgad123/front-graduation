@@ -27,7 +27,13 @@ const Profile = () => {
           method: 'GET', 
           credentials: 'include' 
         });
-
+        const requestOptions = {
+          method: 'GET',
+          credentials: 'include' // هنا يتم تحديد الـ credentials
+        };
+      
+        console.log("Request Options: ", requestOptions);
+        
         if (response.ok) {
           const userData: User = await response.json(); // تحديد نوع البيانات المسترجعة
           setUser(userData);
