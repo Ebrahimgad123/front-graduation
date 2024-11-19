@@ -12,37 +12,40 @@ interface User {
 const Profile = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null); // حالة المستخدم
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    // حاول جلب بيانات المستخدم فقط إذا كان المستخدم مسجلاً الدخول
     const fetchUserProfile = async () => {
       try {
         const response = await fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', { 
           method: 'GET', 
-          credentials: 'include' // إرسال الـ credentials مع الطلب لضمان إرسال الـ cookies
+          credentials: 'include' 
         });
 
         if (response.ok) {
-          const userData: User = await response.json(); // تحديد نوع البيانات المسترجعة
+          const userData: User = await response.json(); 
           setUser(userData);
         } else if (response.status === 401) {
-          console.error("غير مسموح بالدخول، يرجى تسجيل الدخول.");
-          router.push('/login'); // إعادة التوجيه إلى صفحة الدخول إذا كانت المصادقة غير صحيحة
+          setErrorMessage("غير مسموح بالدخول. يرجى تسجيل الدخول.");
+          router.push('/login');
         } else if (response.status === 500) {
-          console.error("خطأ في الخادم. يرجى المحاولة لاحقًا.");
+          setErrorMessage("خطأ في الخادم. يرجى المحاولة لاحقًا.");
         } else {
-          console.error("فشل جلب البيانات: غير متاح.");
+          setErrorMessage("فشل في جلب البيانات.");
         }
       } catch (error) {
-        console.error("حدث خطأ أثناء جلب البيانات:", error);
-        router.push('/login'); // في حالة حدوث خطأ، إعادة التوجيه إلى صفحة الدخول
+        setErrorMessage("حدث خطأ أثناء جلب البيانات.");
+        router.push('/login');
       }
     };
 
-    fetchUserProfile(); // استدعاء دالة جلب البيانات
+    fetchUserProfile();
   }, [router]);
 
-  // عرض رسالة أثناء تحميل البيانات
+  if (errorMessage) {
+    return <div>{errorMessage}</div>;
+  }
+
   if (!user) return <p>جاري تحميل البيانات...</p>;
 
   return (
@@ -61,8 +64,8 @@ const Profile = () => {
 
   // وظيفة لتسجيل الخروج
   async function handleLogout() {
-    await fetch('/api/auth/logout', { method: 'GET', credentials: 'include' }); // إرسال طلب لتسجيل الخروج
-    router.push('/login'); // إعادة توجيه المستخدم إلى صفحة الدخول بعد الخروج
+    await fetch('/api/auth/logout', { method: 'GET', credentials: 'include' }); 
+    router.push('/login');
   }
 };
 
