@@ -31,9 +31,6 @@ const Profile = () => {
         if (response.ok) {
           const userData: User = await response.json(); // تحديد نوع البيانات المسترجعة
           setUser(userData);
-        } else {
-          // إذا كان هناك خطأ أو لم يتم العثور على المستخدم
-          router.push('/login'); // إذا لم يكن المستخدم مسجلاً، إعادة توجيهه إلى صفحة الدخول
         }
       } catch (error) {
         console.error("Error fetching profile:", error);
