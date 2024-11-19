@@ -13,7 +13,7 @@ const Login = () => {
     // حاول جلب بيانات المستخدم بعد التوجيه عبر Google
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/profile", {
+        const response = await fetch("https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile", {
           method: "GET", // طلب للحصول على بيانات المستخدم
           credentials: "include", // لتضمين الجلسة في الطلب
         });
