@@ -5,11 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 const Login = () => {
   const router=useRouter()
-  const handleLogin = (provider: string) => {
-    // هنا يمكنك إضافة المنطق الخاص بتسجيل الدخول باستخدام الموفر المختار
-    console.log(`تسجيل الدخول باستخدام ${provider}`);
-    router.push('/getlocation')
-  };
+
 
   return (
     <div className="login-container">
@@ -22,16 +18,16 @@ const Login = () => {
           <input type="password" placeholder="password" className="login-input" />
         </div>
 
-        <button className="login-submit-button" onClick={()=>handleLogin("jnj")}>SignIn</button>
+        <button className="login-submit-button" >SignIn</button>
          <div className='Or_Div'>________________or________________</div>
         <div className="social-login">
-          <button className="social-button" onClick={() => handleLogin('Google')}>
+          <button onClick={()=>{router.push('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/auth/google')}} className="social-button" >
             <img src="/Images/google.svg" alt="Google" className="social-icon" />
           </button>
-          <button className="social-button" onClick={() => handleLogin('Facebook')}>
+          <button className="social-button" >
             <img src="/Images/facebook.svg" alt="Facebook" className="social-icon" />
           </button>
-          <button className="social-button" onClick={() => handleLogin('Apple')}>
+          <button className="social-button" >
             <img src="/Images/apple.svg" alt="Apple" className="social-icon" />
           </button>
         </div>
