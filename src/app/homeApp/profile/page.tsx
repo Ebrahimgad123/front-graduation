@@ -27,7 +27,6 @@ const Profile = () => {
           setUser(userData);
         } else if (response.status === 401) {
           setErrorMessage("غير مسموح بالدخول. يرجى تسجيل الدخول.");
-          router.push('/login');
         } else if (response.status === 500) {
           setErrorMessage("خطأ في الخادم. يرجى المحاولة لاحقًا.");
         } else {
@@ -35,7 +34,6 @@ const Profile = () => {
         }
       } catch (error) {
         setErrorMessage("حدث خطأ أثناء جلب البيانات.");
-        router.push('/login');
       }
     };
 

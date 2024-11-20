@@ -20,7 +20,9 @@ const Login = () => {
 
         if (response.ok) {
           const userData = await response.json();
-          setUser(userData); // حفظ البيانات في الحالة
+          setUser(userData);
+          console.log(userData)
+
         } else {
           console.error("لم يتم العثور على بيانات المستخدم.");
         }
