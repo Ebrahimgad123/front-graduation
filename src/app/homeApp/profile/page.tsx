@@ -6,12 +6,12 @@ const Profile = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', {
+    fetch("https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include', // تضمين الـ cookies في الطلب
+      credentials: 'include',
     })
     .then(response => {
       if (!response.ok) {

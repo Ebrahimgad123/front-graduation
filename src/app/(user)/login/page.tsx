@@ -14,11 +14,11 @@ const Login = () => {
     const fetchUserData = async () => {
       try {
         const response = await fetch("https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile", {
-          method: "GET",
-          credentials: "include", 
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
+          credentials: 'include',
         });
       
         if (response.ok) {
