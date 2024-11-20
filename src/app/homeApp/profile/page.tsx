@@ -1,70 +1,46 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
-// تعريف نوع المستخدم (User)
-interface User {
-  displayName: string;
-  email: string;
-  profilePicture: string;
-}
+"use client"
+import React, { useEffect, useState } from 'react';
 
 const Profile = () => {
-  const router = useRouter();
-  const [user, setUser] = useState<User | null>(null); // حالة المستخدم
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const response = await fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', { 
-          method: 'GET', 
-          credentials: 'include' 
-        });
-
-        if (response.ok) {
-          const userData: User = await response.json(); 
-          setUser(userData);
-        } else if (response.status === 401) {
-          setErrorMessage("غير مسموح بالدخول. يرجى تسجيل الدخول.");
-        } else if (response.status === 500) {
-          setErrorMessage("خطأ في الخادم. يرجى المحاولة لاحقًا.");
-        } else {
-          setErrorMessage("فشل في جلب البيانات.");
-        }
-      } catch (error) {
-        setErrorMessage("حدث خطأ أثناء جلب البيانات.");
+    fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // تضمين الـ cookies في الطلب
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch profile');
       }
-    };
+      return response.json();
+    })
+    .then(data => {
+      setProfile(data);
+    })
+    .catch(err => {
+      setError(err.message);
+    });
+  }, []); // سيتم تنفيذ الطلب مرة واحدة عند تحميل الصفحة
 
-    fetchUserProfile();
-  }, [router]);
-
-  if (errorMessage) {
-    return <div>{errorMessage}</div>;
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
-  if (!user) return <p>جاري تحميل البيانات...</p>;
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="profile-container">
-      <h1>ملفك الشخصي</h1>
-      <div className="profile-info">
-        <img src={user.profilePicture} alt="Profile Picture" className="profile-image" />
-        <div className="profile-details">
-          <p><strong>الاسم:</strong> {user.displayName}</p>
-          <p><strong>البريد الإلكتروني:</strong> {user.email}</p>
-        </div>
-      </div>
-      <button onClick={handleLogout} className="logout-button">تسجيل الخروج</button>
+    <div>
+      <h1>Profile</h1>
+      <pre>{JSON.stringify(profile, null, 2)}</pre>
     </div>
   );
-
-  // وظيفة لتسجيل الخروج
-  async function handleLogout() {
-    await fetch('/api/auth/logout', { method: 'GET', credentials: 'include' }); 
-    router.push('/login');
-  }
 };
 
 export default Profile;
