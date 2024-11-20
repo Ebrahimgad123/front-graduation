@@ -6,12 +6,12 @@ const Profile = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile", {
+    fetch('https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'Cookie': 'connect.sid=s%3AeHr5mLV3XaijnRBKi6DhMSZihd8-Lwke.WxqrYuhwSp4j%2BD97Lrz36%2Bf8xr15iTWeaRjoBncUJdw;', // ضع الكوكيز هنا
       },
-      credentials: 'include',
+      credentials: 'include' // تأكد من إرسال الكوكيز عبر النطاقات
     })
     .then(response => {
       if (!response.ok) {
