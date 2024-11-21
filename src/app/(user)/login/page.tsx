@@ -39,15 +39,7 @@ const Login = () => {
     fetchUserData();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="login-container">
-        <div className="login-content">
-          <h1>Loading...</h1>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="login-container">
