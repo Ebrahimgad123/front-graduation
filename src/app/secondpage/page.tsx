@@ -9,10 +9,10 @@ const page = () => {
      </h1>
     <div className='flex flex-col justify-center items-center gap-2'>  
      
-    <Link href="/login" className="bg-orange-300 text-gray-700  px-20 py-2 rounded-2xl mb-2 mt-2 text-xl font">
+    <Link href="/login" className="bg-[#F98C53] text-white  px-20 py-2 rounded-md mb-2 mt-2 font">
     Tourist
    </Link>
-   <Link href="" className="bg-orange-300 text-gray-700 px-16 py-2 rounded-2xl text-xl font">
+   <Link href="" className="bg-[#F98C53] text-white px-16 py-2 rounded-md font">
     Tour Guide
    </Link>
    </div>
