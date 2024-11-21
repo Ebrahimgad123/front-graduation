@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Image from 'next/image'
 type ProfileType = {
-  name: string;
+  displayName: string;
   email: string;
   role: string;
+  profilePicture:string,
   createdAt: string;
 };
 
@@ -55,13 +56,15 @@ const Profile: React.FC = () => {
     return <div className="text-gray-500 text-center mt-10">Loading...</div>;
   }
 
+
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
         <h1 className="text-2xl font-bold mb-4 text-center">الملف الشخصي</h1>
+        <Image src={profile.profilePicture} width={200} height={200} alt="" className="rounded-full w-[200px] h-[200px] m-auto"/>
         <div className="space-y-4">
           <div>
-            <span className="font-semibold">الاسم:</span> {profile.name || "غير متوفر"}
+            <span className="font-semibold">الاسم:</span> {profile.displayName || "غير متوفر"}
           </div>
           <div>
             <span className="font-semibold">البريد الإلكتروني:</span> {profile.email || "غير متوفر"}
