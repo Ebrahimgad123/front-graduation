@@ -33,7 +33,6 @@ const Profile: React.FC = () => {
             console.warn("جلسة منتهية. سيتم إعادة التوجيه إلى صفحة تسجيل الدخول...");
             localStorage.removeItem("token");
             document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            router.push("/login");
           }
           throw new Error("Failed to fetch profile");
         }
