@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       "encrypted-tbn0.gstatic.com",
       "media.istockphoto.com",
       "www.egypttoday.com",
+      'www.egypttoursportal.com', 
+      'lh3.googleusercontent.com'
     ], // السماح بتحميل الصور من هذه النطاقات
   },
  
