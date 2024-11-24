@@ -51,7 +51,7 @@ const Profile: React.FC = () => {
     };
 
     fetchProfile();
-  }, [router]);
+  }, []);
 
   if (error) {
     return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
