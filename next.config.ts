@@ -10,10 +10,7 @@ const nextConfig: NextConfig = {
       "www.egypttoday.com",
     ], // السماح بتحميل الصور من هذه النطاقات
   },
-  i18n: {
-    locales: ["en", "ar"], // اللغات المدعومة
-    defaultLocale: "en",   // اللغة الافتراضية
-  },
+ 
   output: "standalone",    
 };
 
