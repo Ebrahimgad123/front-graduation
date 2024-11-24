@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true, // تشغيل الوضع الصارم في React
-  swcMinify: true,       // تفعيل التصغير باستخدام SWC
   images: {
     domains: [
       "lh5.googleusercontent.com",
