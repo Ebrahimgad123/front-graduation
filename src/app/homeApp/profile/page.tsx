@@ -15,7 +15,12 @@ type ErrorType = string | null;
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [error, setError] = useState<ErrorType>(null);
-  const router = useRouter(); // لإعادة التوجيه
+  const router = useRouter(); 
+
+  if(!profile){
+    return;
+  }
+const createdDate = new Date(profile.createdAt).toLocaleDateString() || 
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -23,9 +28,12 @@ const Profile: React.FC = () => {
         const response = await fetch(
           "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile",
           {
-            method: "GET",
-            credentials: "include", // إرسال ملفات تعريف الارتباط
-          }
+         method: "GET",
+           headers: {
+         "Content-Type": "application/json",
+      },
+          credentials: "include",
+        }
         );
 
         if (!response.ok) {
@@ -73,7 +81,7 @@ const Profile: React.FC = () => {
           </div>
           <div>
             <span className="font-semibold">تاريخ الإنشاء:</span>{" "}
-            {new Date(profile.createdAt).toLocaleDateString() || "غير متوفر"}
+            {createdDate || "غير متوفر"}
           </div>
         </div>
       </div>

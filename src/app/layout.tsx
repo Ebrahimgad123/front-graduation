@@ -6,6 +6,7 @@ import store from './store/store';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme, darkTheme } from './theme'; // تأكد من وجود هذه الملفات
 import { RootState } from './store/store'; // استيراد RootState
+import { SessionProvider } from "next-auth/react";
 
 // تحميل الخطوط المحلية
 const geistSans = localFont({
@@ -39,17 +40,19 @@ export default function RootLayout({
   children: React.ReactNode; // إضافة نوع children هنا
 }) {
   return (
-    <Provider store={store}>
-      <html lang="en">
+    <html lang="en">
         <head>
           <title>Trav mate</title>
           <meta name="description" />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
           {/* تغليف المحتوى بـ ThemeWrapper لضمان تطبيق الـ Dark Mode */}
-          <ThemeWrapper>{children}</ThemeWrapper>
+          <Provider store={store}>
+          <ThemeWrapper>
+              {children}
+          </ThemeWrapper>
+          </Provider>
         </body>
       </html>
-    </Provider>
   );
 }

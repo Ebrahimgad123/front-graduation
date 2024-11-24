@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { selectLocation } from '../../store/locationSlice';
-
+import Image from 'next/image'
 interface Params {
   params: Promise<{ city: string }>;
 }
@@ -82,7 +82,7 @@ const Page =({params}:Params) => {
       <div className="p-4">
         {dataCity && ( // Ensure dataCity is available before trying to access its properties
           <div className="relative">
-            <img src={dataCity.image} alt={`${dataCity.name} cityscape`} className="w-full h-60 object-cover" />
+            <Image src={dataCity.image} alt={`${dataCity.name} cityscape`} className="w-full h-60 object-cover" />
             <div className="absolute top-4 left-4 flex space-x-2">
               <button className="bg-white p-2 rounded-full shadow-md"><i className="fas fa-share-alt"></i></button>
               <button className="bg-white p-2 rounded-full shadow-md"><i className="fas fa-heart"></i></button>
@@ -120,7 +120,7 @@ const Page =({params}:Params) => {
              
               <div className="flex overflow-x-auto space-x-4 mt-4 hide-scrollbar">
                 <div className="flex-shrink-0 w-64">
-                  <img
+                  <Image
                     src={tour.image}
                     alt={tour.name}
                     className="w-full h-40 object-cover rounded"
@@ -133,7 +133,7 @@ const Page =({params}:Params) => {
                 </div>
                 {tour.places.map((place: Place, index: number) => (
                   <div key={index} className="flex-shrink-0 w-[300px]  text-center">
-                    <img
+                    <Image
                       src={place.images[0]}
                       alt={place.name}
                       className="w-full h-40 object-cover rounded"

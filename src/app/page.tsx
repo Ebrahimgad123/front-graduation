@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 const Welcome = () => {
   const router = useRouter();
 
@@ -20,7 +20,7 @@ const Welcome = () => {
         <h1 className="welcome-title">Trav Mate</h1>
       </div>
       <div className="welcome-content">
-        <img src="/Images/logoTrave.png" alt="Logo" className="welcome-logo" />
+        <Image width={200} height={200}  priority={true} src="/Images/logoTrave.png" alt="Logo" className="welcome-logo" />
       </div>
     </div>
   );

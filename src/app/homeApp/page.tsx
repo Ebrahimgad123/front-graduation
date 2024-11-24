@@ -19,6 +19,7 @@ import Image from 'next/image'
 import { toggleDarkMode } from '../store/themeSlice';
 import { Button } from "@mui/material";
 import { Brightness4, Brightness7 } from '@mui/icons-material';
+
 interface Destination {
   _id: number;
   name: string;
@@ -136,7 +137,7 @@ const TravelApp = () => {
               filteredDestinations.map((destination) => (
                 <li key={destination._id} className="flex justify-between items-center p-2 hover:bg-gray-100 rounded-lg">
                   <span className="text-lg font-medium  text-black">{destination.name}</span>
-                  <img
+                  <Image 
                     src={destination.image}
                     alt={destination.name}
                     width={90}
@@ -176,7 +177,9 @@ const TravelApp = () => {
         <span className="ml-2">افتتح مؤخرا</span>
       </div>
       <div className="bg-gray-100 p-4 rounded-lg mb-4 flex items-center">
-        <img
+        <Image
+             width={200}
+             height={200}
           src="/Images/welcome.jpeg"
           alt="Egypt flag"
           className="w-[50px] h-[50px] rounded-[100%]  mr-4"
@@ -208,7 +211,7 @@ const TravelApp = () => {
       }}
     >
       <div className="relative">
-        <img
+        <Image
           onClick={() => router.push(`/homeApp/${destination._id}`)}
           src={destination.image}
           alt={destination.name}
