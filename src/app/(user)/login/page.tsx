@@ -43,6 +43,7 @@ const Login = () => {
   const handleGoogleAuth = async () => {
     try {
       router.push(
+        // backend
         "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/auth/google"
       );
     } catch (error) {

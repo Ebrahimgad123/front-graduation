@@ -6,9 +6,9 @@ import Image from "next/image";
 type ProfileType = {
   displayName: string;
   email: string;
-  role: string;
   profilePicture: string;
-  createdAt: string;
+  createdAt:string;
+  updatedAt:string;
 };
 
 type ErrorType = string | null;
@@ -31,27 +31,29 @@ const Profile: React.FC = () => {
             credentials: "include",
           }
         );
-
+  
         if (!response.ok) {
           if (response.status === 401) {
             console.warn("جلسة منتهية. سيتم إعادة التوجيه إلى صفحة تسجيل الدخول...");
             localStorage.removeItem("token");
             document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             // توجيه المستخدم إلى صفحة تسجيل الدخول
-            router.push("/login"); 
+            router.push("/login");
           }
           throw new Error("فشل في جلب البيانات");
         }
-
+  
         const data: ProfileType = await response.json();
+  
         setProfile(data);
       } catch (err: any) {
         setError(err.message);
       }
     };
-
+  
     fetchProfile();
   }, []);
+  
 
   if (error) {
     return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
@@ -61,13 +63,12 @@ const Profile: React.FC = () => {
     return <div className="text-gray-500 text-center mt-10">Loading...</div>;
   }
 
-  // تحويل تاريخ الإنشاء إلى صيغة مناسبة
-  const createdDate = new Date(profile.createdAt).toLocaleDateString();
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4 text-center">الملف الشخصي</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center"> Personal profile</h1>
         {/* التأكد من أن الرابط صحيح ويعمل مع Image في Next.js */}
         <Image
           src={profile.profilePicture}
@@ -79,16 +80,16 @@ const Profile: React.FC = () => {
         />
         <div className="space-y-4">
           <div>
-            <span className="font-semibold">الاسم:</span> {profile.displayName || "غير متوفر"}
+            <span className="font-semibold">Name:</span> {profile.displayName || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">البريد الإلكتروني:</span> {profile.email || "غير متوفر"}
+            <span className="font-semibold"> Email:</span> {profile.email || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">الدور:</span> {profile.role || "غير متوفر"}
+            <span className="font-semibold"> createdAt</span> {profile.createdAt || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">تاريخ الإنشاء:</span> {createdDate || "غير متوفر"}
+            <span className="font-semibold"> updatedAt</span> {profile.updatedAt || "غير متوفر"}
           </div>
         </div>
       </div>

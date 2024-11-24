@@ -212,6 +212,8 @@ const TravelApp = () => {
     >
       <div className="relative">
         <Image
+        width={200}
+        height={200}
           onClick={() => router.push(`/homeApp/${destination._id}`)}
           src={destination.image}
           alt={destination.name}
