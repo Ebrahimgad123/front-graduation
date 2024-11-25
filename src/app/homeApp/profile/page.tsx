@@ -7,8 +7,8 @@ type ProfileType = {
   displayName: string;
   email: string;
   profilePicture: string;
-  createdAt:string;
-  updatedAt:string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 type ErrorType = string | null;
@@ -17,6 +17,15 @@ const Profile: React.FC = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [error, setError] = useState<ErrorType>(null);
   const router = useRouter();
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ar-EG', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -28,39 +37,40 @@ const Profile: React.FC = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include",
+            credentials: "include", // إرسال الكوكيز مع الطلب
           }
         );
-  
+
+        if (!response.ok) {
+          throw new Error("فشل في جلب بيانات الملف الشخصي");
+        }
+
         const data: ProfileType = await response.json();
-         console.log("ProfileData===========",data)
+        console.log("ProfileData===========", data);
         setProfile(data);
       } catch (err: any) {
-        setError(err.message);
+        setError(err?.message || "حدث خطأ غير متوقع");
       }
     };
-  
+
     fetchProfile();
   }, []);
-  
 
   if (error) {
     return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
   }
 
   if (!profile) {
-    return <div className="text-gray-500 text-center mt-10">Loading...</div>;
+    return <div className="text-gray-500 text-center mt-10">جاري التحميل...</div>;
   }
-
-
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4 text-center"> Personal profile</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">الملف الشخصي</h1>
         {/* التأكد من أن الرابط صحيح ويعمل مع Image في Next.js */}
         <Image
-          src={profile.profilePicture}
+          src={profile.profilePicture || "/default-profile.jpg"} // صورة افتراضية في حال كانت الصورة غير موجودة
           width={200}
           height={200}
           alt="Profile Picture"
@@ -69,16 +79,16 @@ const Profile: React.FC = () => {
         />
         <div className="space-y-4">
           <div>
-            <span className="font-semibold">Name:</span> {profile.displayName || "غير متوفر"}
+            <span className="font-semibold">الاسم:</span> {profile.displayName || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold"> Email:</span> {profile.email || "غير متوفر"}
+            <span className="font-semibold">البريد الإلكتروني:</span> {profile.email || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold"> createdAt</span> {profile.createdAt || "غير متوفر"}
+            <span className="font-semibold">تاريخ الإنشاء:</span> {formatDate(profile.createdAt) || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold"> updatedAt</span> {profile.updatedAt || "غير متوفر"}
+            <span className="font-semibold">تاريخ التحديث:</span> {formatDate(profile.updatedAt) || "غير متوفر"}
           </div>
         </div>
       </div>
