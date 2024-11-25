@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import axios from "axios";
 
 type ProfileType = {
   displayName: string;
@@ -18,59 +19,49 @@ const Profile: React.FC = () => {
   const [error, setError] = useState<ErrorType>(null);
   const router = useRouter();
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ar-EG', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(
+        // استخدام axios لاستدعاء الـ API
+        const response = await axios.get(
           "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile",
           {
-            method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include", // إرسال الكوكيز مع الطلب
+            withCredentials: true, // تأكد من إرسال الكوكيز مع الطلب
           }
         );
 
-        if (!response.ok) {
-          throw new Error("فشل في جلب بيانات الملف الشخصي");
-        }
-
-        const data: ProfileType = await response.json();
-        console.log("ProfileData===========", data);
-        setProfile(data);
+        // بيانات الملف الشخصي
+        setProfile(response.data);
       } catch (err: any) {
-        setError(err?.message || "حدث خطأ غير متوقع");
+        // التعامل مع الأخطاء
+        setError(err.response?.data?.message || "حدث خطأ غير متوقع");
+        console.log("خطأ في جلب البيانات:", err);
       }
     };
 
     fetchProfile();
   }, []);
 
+  // عرض رسالة خطأ إذا كان هناك خطأ في جلب البيانات
   if (error) {
     return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
   }
 
+  // عرض رسالة تحميل إذا كانت البيانات غير موجودة بعد
   if (!profile) {
-    return <div className="text-gray-500 text-center mt-10">جاري التحميل...</div>;
+    return <div className="text-gray-500 text-center mt-10">Loading...</div>;
   }
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4 text-center">الملف الشخصي</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center"> Personal profile</h1>
         {/* التأكد من أن الرابط صحيح ويعمل مع Image في Next.js */}
         <Image
-          src={profile.profilePicture || "/default-profile.jpg"} // صورة افتراضية في حال كانت الصورة غير موجودة
+          src={profile.profilePicture}
           width={200}
           height={200}
           alt="Profile Picture"
@@ -79,16 +70,16 @@ const Profile: React.FC = () => {
         />
         <div className="space-y-4">
           <div>
-            <span className="font-semibold">الاسم:</span> {profile.displayName || "غير متوفر"}
+            <span className="font-semibold">Name:</span> {profile.displayName || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">البريد الإلكتروني:</span> {profile.email || "غير متوفر"}
+            <span className="font-semibold"> Email:</span> {profile.email || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">تاريخ الإنشاء:</span> {formatDate(profile.createdAt) || "غير متوفر"}
+            <span className="font-semibold"> Created At:</span> {profile.createdAt || "غير متوفر"}
           </div>
           <div>
-            <span className="font-semibold">تاريخ التحديث:</span> {formatDate(profile.updatedAt) || "غير متوفر"}
+            <span className="font-semibold"> Updated At:</span> {profile.updatedAt || "غير متوفر"}
           </div>
         </div>
       </div>
