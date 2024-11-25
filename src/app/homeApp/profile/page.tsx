@@ -32,19 +32,8 @@ const Profile: React.FC = () => {
           }
         );
   
-        if (!response.ok) {
-          if (response.status === 401) {
-            console.warn("جلسة منتهية. سيتم إعادة التوجيه إلى صفحة تسجيل الدخول...");
-            localStorage.removeItem("token");
-            document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            // توجيه المستخدم إلى صفحة تسجيل الدخول
-            router.push("/login");
-          }
-          throw new Error("فشل في جلب البيانات");
-        }
-  
         const data: ProfileType = await response.json();
-  
+         console.log("ProfileData===========",data)
         setProfile(data);
       } catch (err: any) {
         setError(err.message);
