@@ -54,6 +54,24 @@ const Profile: React.FC = () => {
   if (!profile) {
     return <div className="text-gray-500 text-center mt-10">Loading...</div>;
   }
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:9000/api/logout', {
+        method: 'POST',
+        credentials: 'include', 
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to logout');
+      }
+  
+      const data = await response.json();
+      console.log(data.message); 
+    } catch (error) {
+      console.error('Error logging out:', error.message); // عرض الخطأ في حال حدوثه
+    }
+  };
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
@@ -66,7 +84,7 @@ const Profile: React.FC = () => {
           height={200}
           alt="Profile Picture"
           className="rounded-full w-[200px] h-[200px] m-auto"
-          unoptimized // لتجاوز التحسين إذا كانت الصورة لا تعمل مع Next.js
+         
         />
         <div className="space-y-4">
           <div>
@@ -81,6 +99,7 @@ const Profile: React.FC = () => {
           <div>
             <span className="font-semibold"> Updated At:</span> {profile.updatedAt || "غير متوفر"}
           </div>
+          <button onClick={handleLogout} className="btn bg-red-500 p-2 rounded text-white">logout</button>
         </div>
       </div>
     </div>
