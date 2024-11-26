@@ -68,7 +68,7 @@ const Profile: React.FC = () => {
       const data = await response.json();
       console.log(data.message); 
     } catch (error) {
-      console.error('Error logging out:', error.message); // عرض الخطأ في حال حدوثه
+      console.error('Error logging out:'); // عرض الخطأ في حال حدوثه
     }
   };
   
