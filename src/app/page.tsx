@@ -9,8 +9,7 @@ const Welcome = () => {
     const timer = setTimeout(() => {
       router.push("/secondpage");
     }, 3000);
-
-    // تنظيف الـ timeout لتجنب تسرب الذاكرة
+    
     return () => clearTimeout(timer);
   }, [router]);
 

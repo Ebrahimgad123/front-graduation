@@ -1,13 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faSearch,
-  faLocationArrow,
-  faCog,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import {faHeart,faSearch,faLocationArrow,faCog,faUser,} from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import { useSelector } from 'react-redux'; 
 import { selectLocation } from '../store/locationSlice';
@@ -19,13 +13,14 @@ import Image from 'next/image'
 import { toggleDarkMode } from '../store/themeSlice';
 import { Button } from "@mui/material";
 import { Brightness4, Brightness7 } from '@mui/icons-material';
+import Tours from '../../component/ToursScrollbar'
 
 interface Destination {
   _id: number;
   name: string;
   country: string;
-  image: string; // Ensure this property exists
-  distanceFromUser: string; // Adjust type if needed
+  image: string; 
+  distanceFromUser: string; 
 }
 
 const TravelApp = () => {
@@ -154,6 +149,9 @@ const TravelApp = () => {
 
         </div>
       </div>
+         {/* The chooses */}
+         
+         {/* The chooses */}
       <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
         <Image
           width={300}
@@ -167,7 +165,7 @@ const TravelApp = () => {
          height={300}
           src="/Images/map.jpg"
           alt="World map with regions labeled"
-          className="w-[100%] h-[400px] rounded-lg sm:w-[45%] "
+          className="w-[100%] h-[400px] rounded-lg sm:w-[45%] image2"
         />
       </div>
       
@@ -178,15 +176,14 @@ const TravelApp = () => {
       </div>
       <div className="bg-gray-100 p-4 rounded-lg mb-4 flex items-center">
         <Image
-             width={200}
-             height={200}
+          width={200}
+          height={200}
           src="/Images/welcome.jpeg"
           alt="Egypt flag"
-          className="w-[50px] h-[50px] rounded-[100%]  mr-4"
-        />
+          className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
         <div>
-          <span className="block text-black">dicover {destinations.length} destination in </span>
-          <span className="block font-bold  text-black">Egypt</span>
+          <span className="block text-gray-500">dicover {destinations.length} destination in </span>
+          <span className="block font-bold  text-gray-500">Egypt</span>
         </div>
         <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
       </div>
@@ -201,19 +198,19 @@ const TravelApp = () => {
       </div>
 
       <h2 className="text-xl font-bold mb-4">Recommended Places</h2>
-      <div className="flex overflow-x-auto mb-4" style={{ scrollSnapType: "x mandatory" }}>
-  {destinations.map((destination, index) => (
+      <div className="flex overflow-x-auto  hide-scrollbar" >
+     {destinations.map((destination, index) => (
     <div
-      key={`${destination._id}-${index}`} // Combine id and index for a unique key
+      key={`${destination._id}-${index}`} 
       className="min-w-[300px] mr-4"
       style={{
         scrollSnapAlign: "start",
       }}
     >
       <div className="relative">
-        <Image
-        width={200}
-        height={200}
+         <Image
+          width={200}
+          height={200}
           onClick={() => router.push(`/homeApp/${destination._id}`)}
           src={destination.image}
           alt={destination.name}
@@ -243,9 +240,10 @@ const TravelApp = () => {
       </div>
     </div>
   ))}
+      </div>
+      <Tours/>
+      
 </div>
-
-    </div>
   );
 };
 

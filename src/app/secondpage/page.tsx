@@ -4,7 +4,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className='flex flex-col justify-center min-h-screen gap-20 w-[100%] m-auto  '>
-     <h1 style={{borderRadius:'30px 0 30px 0'}} className=" text-black text-xl  bg-orange-200 px-8 py-5 text-center mx-auto rounded-md">
+     <h1 className=" text-black text-xl  bg-[#F98C53] px-8 py-5 text-center mx-auto rounded-md">
           You need to Login as
      </h1>
     <div className='flex flex-col justify-center items-center gap-2'>  

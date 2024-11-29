@@ -43,27 +43,27 @@
 }
 
 .button.allow {
-    background-color: #4CAF50; /* لون الزر للسماح */
+    background-color: #F98C53; /* لون الزر للسماح */
     color: white; /* لون النص */
 }
 
 .button.allow:hover {
-    background-color: #45a049; /* لون الزر عند التحويم */
+    background-color: #F98C53; /* لون الزر عند التحويم */
     transform: scale(1.05); /* تكبير الزر عند التحويم */
 }
 
 .button.deny {
-    background-color: #f44336; /* لون الزر للرفض */
+    background-color:#F98C53; /* لون الزر للرفض */
     color: white; /* لون النص */
 }
 
 .button.deny:hover {
-    background-color: #e53935; /* لون الزر عند التحويم */
+    background-color: #F98C53; /* لون الزر عند التحويم */
     transform: scale(1.05); /* تكبير الزر عند التحويم */
 }
 
 .denied {
-    color: #f44336; /* لون النص للرفض */
+    color: #F98C53; /* لون النص للرفض */
 }
 
 /* استعلامات وسائل الإعلام للتصميم المتجاوب */

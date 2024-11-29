@@ -31,12 +31,12 @@ const Page: React.FC = () => {
           setIsAllowed(true);
           dispatch(setLocation(currentCoordinates));
           router.push('/homeApp'); 
-          setLoading(false); // انتهاء حالة التحميل
+          setLoading(false); 
         },
         (err) => {
           setError(err.message);
           setIsAllowed(false);
-          setLoading(false); // انتهاء حالة التحميل
+          setLoading(false); 
         }
       );
     } else {
@@ -55,11 +55,10 @@ const Page: React.FC = () => {
         } else {
           setError('Access to location has been denied.');
           setIsAllowed(false);
-          setLoading(false); // انتهاء حالة التحميل
         }
       } catch (error) {
         setError('Error checking location permissions.');
-        setLoading(false); // انتهاء حالة التحميل
+        setLoading(false); 
       }
     } else {
       handleLocationRequest();
