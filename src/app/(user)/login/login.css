@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     height: 100vh; 
-    background-color: #f0f0f0;
+    background-color: #120a34 ;
   }
   .login-content {
     text-align: center;
@@ -22,7 +22,7 @@
   }
   .login-title {
     font-size: 2rem;
-    color: #333; 
+    color: white; 
     margin-bottom: 20px; 
   }
   
@@ -47,7 +47,7 @@
     cursor: pointer; 
     font-size: 1rem; 
     color: white;
-    background-color:#F98C53    ; 
+    background-color:#416aef;
     margin-bottom: 15px;
   }
   
@@ -76,5 +76,5 @@
   }
   .link-sign-up{
     text-decoration: none;
-    color: #F98C53 ;
+    color: #416aef ;
   }

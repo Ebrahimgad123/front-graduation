@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,8 +18,7 @@ body {
   background: var(--background);
 }
 
-
-/* welcome */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:slnt,wght@2,200..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Pacifico&display=swap');
   body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,18 +32,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* ارتفاع الشاشة بالكامل */
-    background-color: #f0f0f0; /* لون خلفية فاتح */
+    height: 100vh; 
+    background-color: #120a34; 
   }
   
   .welcome-content img{
     border-radius:20px;
   }
- 
-  
+  .cairo {
+    font-family: "Cairo", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 1.6; 
+    text-rendering: optimizeLegibility; 
+}
+
   .welcome-logo {
-    width: 200px; /* تعديل عرض اللوجو */
-    height: auto; /* الحفاظ على نسبة الطول إلى العرض */
+    width: 200px; 
+    height: auto; 
   }
   /* Animation Keyframes */
 @keyframes bounce {
@@ -67,24 +71,21 @@ body {
     animation: bounce 2s infinite;
 }
   .welcome-title {
-    font-size: 2rem; /* حجم خط أكبر */
-    color: #333; /* لون خط */
-    margin-top: -80px; /* مساحة فوق العنوان */
+    font-size: 2rem; 
+    color: #d4d3d3; 
+    margin-top: -80px; 
     font-family: 'Pacifico', cursive;
   }
-
-/* welcome */
 
 svg{
   width: 20px;
 }
 
-/* CSS لإخفاء شريط التمرير */
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* إخفاء شريط التمرير في المتصفحات المبنية على WebKit */
+  display: none;
 }
 
 .hide-scrollbar {
-  -ms-overflow-style: none; /* إخفاء شريط التمرير في IE و Edge */
-  scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }

@@ -64,7 +64,7 @@ const Login = () => {
           className="login-logo"
           priority
         />
-        <h1 className="login-title">log in</h1>
+        <h1 className="login-title">SignIn</h1>
 
         <div className="input-fields">
           <input
@@ -84,7 +84,7 @@ const Login = () => {
         </div>
 
         <button className="login-submit-button">SignIn</button>
-        <div className="Or_Div">________________or________________</div>
+        <div className="Or_Div text-white">________________or________________</div>
         <div className="social-login">
           <button onClick={handleGoogleAuth} className="social-button">
             <Image
@@ -115,7 +115,7 @@ const Login = () => {
           </button>
         </div>
         <div>
-          <div>
+          <div className="text-white">
             Don’t have Account{" "}
             <Link className="link-sign-up" href="/register">
               SignUp
