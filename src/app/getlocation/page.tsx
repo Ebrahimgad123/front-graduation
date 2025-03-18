@@ -13,9 +13,8 @@ interface Coordinates {
 const Page: React.FC = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const [markerPosition, setMarkerPosition] = useState<Coordinates | null>(null);
   const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch(); 
  
   const handleLocationRequest = () => {
