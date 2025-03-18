@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { setLocation } from '../store/locationSlice'; 
 import './location.css'; 
@@ -15,9 +15,9 @@ const Page: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [markerPosition, setMarkerPosition] = useState<Coordinates | null>(null);
   const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useDispatch(); 
-
+ 
   const handleLocationRequest = () => {
     setLoading(true); 
     if (navigator.geolocation) {
@@ -76,14 +76,17 @@ const Page: React.FC = () => {
     <h2 className="title">Would you like to search for nearby places or perform a general search?</h2>
     {error && <p className="error" aria-live="polite">{error}</p>}
     {isAllowed === null && (
-      <div className="button-container">
+      <div className="button-container ">
         <button className="button allow" onClick={handleAllow}>Near By</button>
         <button className="button deny" onClick={handleDeny}>General Search</button>
+         <div className="flex items-center justify-center mt-4"><div>
+         {loading && (
+        <ClipLoader color="#416aef" size={50}  />
+           )}</div></div>
       </div>
+      
     )}
-    {loading && (
-    <ClipLoader color="#416aef" size={50} />
-       )}
+    
     {isAllowed === false && (
       <p>Please enable location access in your browser settings.</p>
     )}
