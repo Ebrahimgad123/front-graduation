@@ -1,8 +1,8 @@
-"use client"; // تأكد من وجود هذه العبارة لتحديد المكون كجزء من جانب العميل
+"use client";
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavorite, clearFavorites } from '../../store/favoritesSlice'; // تأكد من استيراد الأكشنز
-import { useRouter } from 'next/navigation'; // تأكد من استخدام next/navigation في حال كنت تستخدم app directory
+import { removeFavorite, clearFavorites } from '../../store/favoritesSlice'; 
+import { useRouter } from 'next/navigation';
 
 interface FavoriteItem {
   id: number;
@@ -14,15 +14,12 @@ const FavoritesPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // جلب العناصر المفضلة من Redux
   const favorites = useSelector((state: any) => state.favorites.items);
 
-  // دالة إزالة عنصر من المفضلة
   const handleRemoveFavorite = (id: number) => {
     dispatch(removeFavorite(id));
   };
 
-  // دالة مسح جميع العناصر من المفضلة
   const handleClearFavorites = () => {
     dispatch(clearFavorites());
   };
@@ -30,17 +27,16 @@ const FavoritesPage = () => {
   return (
     <div className="p-4">
       {favorites.length === 0 ? (
-        <p className="text-2xl">لا توجد عناصر مفضلة</p>
+        <p className="text-2xl"> No favorites item</p>
       ) : (
         <div>
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">العناصر المفضلة</h2>
-            {/* زر مسح جميع العناصر */}
+            <h2 className="text-xl font-bold">Favourite items</h2>
             <button 
               onClick={handleClearFavorites} 
               className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
             >
-              مسح جميع العناصر
+              Clear all favorites
             </button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-[50px]">
@@ -60,8 +56,6 @@ const FavoritesPage = () => {
                     lets start now
                   </button>
                 </div>
-
-                {/* زر إزالة من المفضلة */}
                 <button
                   onClick={() => handleRemoveFavorite(favorite.id)}
                   className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600"

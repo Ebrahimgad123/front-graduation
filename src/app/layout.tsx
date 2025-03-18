@@ -46,7 +46,6 @@ export default function RootLayout({
           <meta name="description" />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
-          {/* تغليف المحتوى بـ ThemeWrapper لضمان تطبيق الـ Dark Mode */}
           <Provider store={store}>
           <ThemeWrapper>
               {children}

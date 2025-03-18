@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import '../login/login.css'; // تأكد من إضافة ملف CSS الخاص بتنسيق الصفحة
+import '../login/login.css'; 
 import Link from 'next/link';
 
 const Register = () => {
@@ -11,7 +11,6 @@ const Register = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = (provider: string) => {
-    // هنا يمكنك إضافة المنطق الخاص بتسجيل الدخول باستخدام الموفر المختار
     console.log(`تسجيل الدخول باستخدام ${provider}`);
   };
 

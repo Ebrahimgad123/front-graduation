@@ -8,7 +8,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push("/secondpage");
-    }, 3000);
+    }, 300);
     
     return () => clearTimeout(timer);
   }, [router]);

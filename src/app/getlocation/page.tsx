@@ -16,10 +16,10 @@ const Page: React.FC = () => {
   const [markerPosition, setMarkerPosition] = useState<Coordinates | null>(null);
   const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const dispatch = useDispatch(); // الحصول على الدالة dispatch
+  const dispatch = useDispatch(); 
 
   const handleLocationRequest = () => {
-    setLoading(true); // بدء حالة التحميل
+    setLoading(true); 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -42,7 +42,7 @@ const Page: React.FC = () => {
     } else {
       setError('Geolocation is not supported by this browser.');
       setIsAllowed(false);
-      setLoading(false); // انتهاء حالة التحميل
+      setLoading(false); 
     }
   };
 

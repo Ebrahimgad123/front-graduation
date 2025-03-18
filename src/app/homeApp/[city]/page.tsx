@@ -39,7 +39,7 @@ const Page =({params}:Params) => {
       if (coordinates && coordinates.lat && coordinates.lng) { // Ensure coordinates are available
         try {
           const response = await fetch(
-            `https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/tours/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}&cityId=${city}`
+            `http://localhost:9000/api/tours/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}&cityId=${city}`
           );
 
           if (!response.ok) {
@@ -61,7 +61,7 @@ const Page =({params}:Params) => {
   useEffect(() => {
     const fetchCityData = async () => {
       try {
-        const response = await fetch(`https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/City/${city}`);
+        const response = await fetch(`http://localhost:9000/api/City/${city}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -82,7 +82,7 @@ const Page =({params}:Params) => {
       <div className="p-4">
         {dataCity && ( // Ensure dataCity is available before trying to access its properties
           <div className="relative">
-            <Image src={dataCity.image} alt={`${dataCity.name} cityscape`} className="w-full h-60 object-cover" />
+            <Image src={dataCity.image} width={200} height={200} alt={`${dataCity.name} cityscape`} className="w-full h-60 object-cover" />
             <div className="absolute top-4 left-4 flex space-x-2">
               <button className="bg-white p-2 rounded-full shadow-md"><i className="fas fa-share-alt"></i></button>
               <button className="bg-white p-2 rounded-full shadow-md"><i className="fas fa-heart"></i></button>
@@ -121,6 +121,7 @@ const Page =({params}:Params) => {
               <div className="flex overflow-x-auto space-x-4 mt-4 hide-scrollbar">
                 <div className="flex-shrink-0 w-64">
                   <Image
+                   width={200} height={200}
                     src={tour.image}
                     alt={tour.name}
                     className="w-full h-40 object-cover rounded"
@@ -134,6 +135,7 @@ const Page =({params}:Params) => {
                 {tour.places.map((place: Place, index: number) => (
                   <div key={index} className="flex-shrink-0 w-[300px]  text-center">
                     <Image
+                    width={200} height={200}
                       src={place.images[0]}
                       alt={place.name}
                       className="w-full h-40 object-cover rounded"

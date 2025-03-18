@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
       try {
         // استخدام axios لاستدعاء الـ API
         const response = await axios.get(
-          "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile",
+          "http://localhost:9000/api/profile",
           {
             headers: {
               "Content-Type": "application/json",

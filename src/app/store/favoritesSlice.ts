@@ -23,7 +23,6 @@ const getFavoritesFromLocalStorage = (): FavoriteItem[] => {
   return [];
 };
 
-// دالة لتحديث localStorage مع معالجة الأخطاء
 const updateLocalStorage = (items: FavoriteItem[]) => {
   try {
     if (typeof window !== 'undefined') {
@@ -35,7 +34,7 @@ const updateLocalStorage = (items: FavoriteItem[]) => {
 };
 
 const initialState: FavoritesState = {
-  items: getFavoritesFromLocalStorage(), // تحميل البيانات مباشرة عند بدء التطبيق
+  items: getFavoritesFromLocalStorage(),
 };
 
 const favoritesSlice = createSlice({

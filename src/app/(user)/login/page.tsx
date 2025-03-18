@@ -44,7 +44,7 @@ const Login = () => {
     try {
       router.push(
         // backend
-        "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/auth/google"
+        "http://localhost:9000/api/auth/google"
       );
     } catch (error) {
       console.error("خطأ أثناء التوجيه إلى Google:", error);

@@ -4,8 +4,8 @@ import favouriteReducer from './favoritesSlice'; // استيراد السلاي�
 import themeReducer from './themeSlice'
 const store = configureStore({
   reducer: {
-    location: locationReducer, // إضافة سلايس الموقع
-    favorites: favouriteReducer, // تعديل إلى اسم favorites بدلاً من cart
+    location: locationReducer, 
+    favorites: favouriteReducer, 
     theme: themeReducer,
   },
 });

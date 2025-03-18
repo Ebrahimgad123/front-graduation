@@ -15,6 +15,10 @@ const nextConfig = {
       'r-xx.bstatic.com',
       'www.shutterstock.com',
       'media.gettyimages.com',
+      'images.unsplash.com' ,
+      'plus.unsplash.com',
+      'i.pinimg.com',
+      "https://i.pinimg.com/736x/90/20/e8/9020e8f7d5cfee85985630c2e7e63160.jpg"
       
     ],
   },

@@ -15,8 +15,6 @@ export default function SubFolderLayout({
   return (
     <div>
       {children}
-
-      {/* شريط التنقل السفلي */}
       <div className="fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-around border-t z-40">
         <div className="flex  items-center text-center">
           <Link href="/homeApp/profile">

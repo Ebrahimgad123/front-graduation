@@ -27,7 +27,7 @@ const ToursScrollbar = () => {
       if (coordinates?.lat && coordinates?.lng) {
         try {
           const response = await fetch(
-            `https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/tours?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+            `http://localhost:9000/api/tours?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
           );
           if (!response.ok) throw new Error("Network response was not ok");
 

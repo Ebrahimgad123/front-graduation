@@ -4,7 +4,7 @@ interface LocationState {
   coordinates: { lat: number; lng: number };
 }
 
-// دالة لاسترجاع البيانات من localStorage
+
 const getLocationFromLocalStorage = (): { lat: number; lng: number } => {
   if (typeof window !== 'undefined') {
     const storedLocation = localStorage.getItem('location');
@@ -12,11 +12,11 @@ const getLocationFromLocalStorage = (): { lat: number; lng: number } => {
       return JSON.parse(storedLocation);
     }
   }
-  return { lat: 30.0444, lng: 31.2357 }; // الإحداثيات الافتراضية
+  return { lat: 30.0444, lng: 31.2357 };
 };
 
 const initialState: LocationState = {
-  coordinates: getLocationFromLocalStorage(), // استخدام الدالة لاسترجاع البيانات
+  coordinates: getLocationFromLocalStorage(),
 };
 
 const locationSlice = createSlice({
@@ -25,7 +25,6 @@ const locationSlice = createSlice({
   reducers: {
     setLocation: (state, action: PayloadAction<{ lat: number; lng: number }>) => {
       state.coordinates = action.payload;
-      // حفظ البيانات في localStorage
       if (typeof window !== 'undefined') {
         localStorage.setItem('location', JSON.stringify(state.coordinates));
       }
@@ -33,7 +32,6 @@ const locationSlice = createSlice({
   },
 });
 
-// تصدير المحولات والحالة
 export const { setLocation } = locationSlice.actions;
 export const selectLocation = (state: { location: LocationState }) => state.location.coordinates;
 export default locationSlice.reducer;
