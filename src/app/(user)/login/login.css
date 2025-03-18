@@ -86,7 +86,7 @@
   @media (max-width:750px){
     .login-cotent{
       border:2px solid gray;
-      padding:30px 30px;
+      padding:30px 10px;
       border-radius:4px;
       box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
     }

@@ -15,7 +15,7 @@ export default function SubFolderLayout({
   return (
     <div>
       {children}
-      <div className="fixed bottom-0 left-0 right-0 bg-blue-950 p-4 flex justify-around border-t z-40">
+      <div className="fixed bottom-0 left-0 right-0 bg-blue-300 p-4 flex justify-around border-t z-40">
         <div className="flex  items-center text-center">
           <Link href="/homeApp/profile">
             <FontAwesomeIcon
