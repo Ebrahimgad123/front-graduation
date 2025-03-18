@@ -26,7 +26,6 @@ const Page: React.FC = () => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          setMarkerPosition(currentCoordinates);
           setIsAllowed(true);
           dispatch(setLocation(currentCoordinates));
           router.push('/homeApp'); 
