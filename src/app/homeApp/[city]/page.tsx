@@ -39,7 +39,7 @@ const Page =({params}:Params) => {
       if (coordinates && coordinates.lat && coordinates.lng) { // Ensure coordinates are available
         try {
           const response = await fetch(
-            `http://localhost:9000/api/tours/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}&cityId=${city}`
+            `https://backend10-henna.vercel.app/api/tours/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}&cityId=${city}`
           );
 
           if (!response.ok) {
@@ -61,7 +61,7 @@ const Page =({params}:Params) => {
   useEffect(() => {
     const fetchCityData = async () => {
       try {
-        const response = await fetch(`http://localhost:9000/api/City/${city}`);
+        const response = await fetch(`https://backend10-henna.vercel.app/api/City/${city}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

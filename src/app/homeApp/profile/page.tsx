@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
       try {
         // استخدام axios لاستدعاء الـ API
         const response = await axios.get(
-          "http://localhost:9000/api/profile",
+          "https://backend10-henna.vercel.app/api/profile",
           {
             headers: {
               "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
   }
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:9000/api/logout', {
+      const response = await fetch('https://backend10-henna.vercel.app/api/logout', {
         method: 'POST',
         credentials: 'include', 
       });

@@ -27,7 +27,7 @@ const ToursScrollbar = () => {
       if (coordinates?.lat && coordinates?.lng) {
         try {
           const response = await fetch(
-            `http://localhost:9000/api/tours?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+            `https://backend10-henna.vercel.app/api/tours?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
           );
           if (!response.ok) throw new Error("Network response was not ok");
 

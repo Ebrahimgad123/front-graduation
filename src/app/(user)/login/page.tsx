@@ -44,7 +44,7 @@ const Login = () => {
     try {
       router.push(
         // backend
-        "http://localhost:9000/api/auth/google"
+        "https://backend10-henna.vercel.app/api/auth/google"
       );
     } catch (error) {
       console.error("خطأ أثناء التوجيه إلى Google:", error);
