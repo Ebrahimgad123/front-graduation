@@ -9,45 +9,13 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "https://linguistic-josephine-nooragniztion-eccb8a70.koyeb.app/api/profile",
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           credentials: "include",
-  //         }
-  //       );
-
-  //       if (response.ok) {
-  //         const userData = await response.json();
-  //         setUser(userData);
-  //       } else {
-  //         console.error("لم يتم العثور على بيانات المستخدم.");
-  //       }
-  //     } catch (error) {
-  //       console.error("حدث خطأ أثناء جلب البيانات:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, []);
-
   const handleGoogleAuth = async () => {
     try {
       router.push(
-        // backend
         "https://backend10-henna.vercel.app/api/auth/google"
       );
     } catch (error) {
-      console.error("خطأ أثناء التوجيه إلى Google:", error);
+      console.error("Error:", error);
     }
   };
 
@@ -55,7 +23,8 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-content">
+       <div className="login-cotent">
+       <div className="login-content">
         <Image
           width={200}
           height={200}
@@ -123,6 +92,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+       </div>
     </div>
   );
 };

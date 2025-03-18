@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLocation } from '../store/locationSlice'; // تأكد من تعديل المسار حسب هيكل مشروعك
+import { setLocation } from '../store/locationSlice'; 
 import './location.css'; 
 import { useRouter } from 'next/navigation';
-
+import { ClipLoader } from "react-spinners";
 interface Coordinates {
   lat: number;
   lng: number;
@@ -74,7 +74,6 @@ const Page: React.FC = () => {
 <div className="container_loc">
   <div className="content">
     <h2 className="title">Would you like to search for nearby places or perform a general search?</h2>
-    {loading && <p>Loading...</p>}
     {error && <p className="error" aria-live="polite">{error}</p>}
     {isAllowed === null && (
       <div className="button-container">
@@ -82,6 +81,9 @@ const Page: React.FC = () => {
         <button className="button deny" onClick={handleDeny}>General Search</button>
       </div>
     )}
+    {loading && (
+    <ClipLoader color="#416aef" size={50} />
+       )}
     {isAllowed === false && (
       <p>Please enable location access in your browser settings.</p>
     )}

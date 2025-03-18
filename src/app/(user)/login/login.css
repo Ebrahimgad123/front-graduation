@@ -38,8 +38,13 @@
     border: 1px solid #ccc; 
     border-radius: 5px;
     font-size: 1rem; 
+    }
+  .login-cotent{
+    border:2px solid gray;
+    padding:20px 100px;
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
+
   }
-  
   .login-submit-button {
     padding: 10px 120px; 
     border: none; 
@@ -77,4 +82,12 @@
   .link-sign-up{
     text-decoration: none;
     color: #416aef ;
+  }
+  @media (max-width:750px){
+    .login-cotent{
+      border:2px solid gray;
+      padding:30px 30px;
+      border-radius:4px;
+      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
+    }
   }
