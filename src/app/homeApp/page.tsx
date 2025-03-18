@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { toggleDarkMode } from '../store/themeSlice';
 import { Button } from "@mui/material";
 import { Brightness4, Brightness7 } from '@mui/icons-material';
-import Tours from '../../component/ToursScrollbar'
+
 
 interface Destination {
   _id: number;
@@ -85,34 +85,33 @@ const TravelApp = () => {
        const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
    
   return (
-    <div className="p-4">
+    <div className="p-4 bg-blue-950 text-white">
      <div className="flex justify-between items-center">
     
      <div className="relative flex items-center justify-around mb-4">
       <div>
         <Button
-          className=" ml-0"
-          sx={{ mt: 3 }}
+          className=" ml-0 text-white"
+          sx={{mt:2 }}
           onClick={toggleDropdown} 
           startIcon={<FontAwesomeIcon icon={faCog} />}
         >
-          Menu
         </Button>
 
    
         {isDropdownOpen && (
-          <div className="absolute left-5 mt-2 bg-white shadow-lg rounded-md w-40 p-2 z-10">
+          <div className="absolute left-5 mt-2 bg-blue-900  shadow-lg rounded-md w-40 p-2 z-10">
             <div className="flex items-center space-x-4 cursor-pointer" onClick={() => dispatch(toggleDarkMode())}>
               {darkMode ? <Brightness7 className="text-green-600" /> : <Brightness4 className="text-blue-400"/>}
-              <span className="text-sm text-black">Change Theme</span>
+              <span className="text-sm text-white">Change Theme</span>
             </div>
             <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/favorites')}>
               <FontAwesomeIcon className="text-red-500" icon={faHeart} />
-              <span className="text-sm text-black">Favorites{`(${favorites.length})`}</span>
+              <span className="text-sm text-white">Favorites{`(${favorites.length})`}</span>
             </div>
             <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/profile')}>
               <FontAwesomeIcon className="text-blue-500" icon={faUser} />
-              <span className="text-sm text-black">Profile</span>
+              <span className="text-sm text-white">Profile</span>
             </div>
           </div>
         )}
@@ -149,9 +148,6 @@ const TravelApp = () => {
 
         </div>
       </div>
-         {/* The chooses */}
-         
-         {/* The chooses */}
       <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
         <Image
           width={300}
@@ -169,12 +165,7 @@ const TravelApp = () => {
         />
       </div>
       
-    
-      <div className="flex items-center mb-4">
-        <button className="bg-gray-200 px-4 py-2 rounded-full">Cairo</button>
-        <span className="ml-2">افتتح مؤخرا</span>
-      </div>
-      <div className="bg-gray-100 p-4 rounded-lg mb-4 flex items-center">
+      <div className="bg-gray-100 p-4 rounded-lg mb-4 flex items-center bg-blue-900 text-white">
         <Image
           width={200}
           height={200}
@@ -182,8 +173,8 @@ const TravelApp = () => {
           alt="Egypt flag"
           className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
         <div>
-          <span className="block text-gray-500">dicover {destinations.length} destination in </span>
-          <span className="block font-bold  text-gray-500">Egypt</span>
+          <span className="block text-white">dicover {destinations.length} destination in </span>
+          <span className="block font-bold  text-white">Egypt</span>
         </div>
         <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
       </div>
@@ -241,7 +232,6 @@ const TravelApp = () => {
     </div>
   ))}
       </div>
-      <Tours/>
       
 </div>
   );
