@@ -172,8 +172,8 @@ const TravelApp = () => {
           src="/Images/welcome.jpeg"
           alt="Egypt flag"
           className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
-        <div>
-          <span className="block text-white">dicover {destinations.length} destination in </span>
+        <div className="bg-black">
+          <span className="block  text-white">dicover {destinations.length} destination in </span>
           <span className="block font-bold  text-white">Egypt</span>
         </div>
         <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
