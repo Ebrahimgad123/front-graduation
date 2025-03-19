@@ -1,4 +1,4 @@
-# TRAVMATE DOCUMENTATION
+# TRAVMATE 📌📌
 
 ## OVERVIEW
 TravMate is an advanced travel companion application designed to enhance the travel experience by allowing users to book professional tour guides, explore destinations, and handle payments seamlessly. The app ensures a smooth authentication process using Google login.
@@ -31,7 +31,7 @@ TravMate is an advanced travel companion application designed to enhance the tra
 ### INSTALLATION
 #### 1. Clone the Repository
 ```sh
- git clone [https://github.com/your-repo/travmate.git](https://github.com/Ebrahimgad123/front-graduation)
+ git clone (https://github.com/Ebrahimgad123/front-graduation)
  cd travmate
 ```
 
