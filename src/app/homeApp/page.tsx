@@ -165,14 +165,14 @@ const TravelApp = () => {
         />
       </div>
       
-      <div className="bg-gray-100 p-4 rounded-lg mb-4 flex items-center bg-blue-900 text-white">
+      <div className="bg-black p-4 rounded-lg mb-4 flex items-center bg-blue-900 text-white">
         <Image
           width={200}
           height={200}
           src="/Images/welcome.jpeg"
           alt="Egypt flag"
           className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
-        <div className="bg-black">
+        <div >
           <span className="block  text-white">dicover {destinations.length} destination in </span>
           <span className="block font-bold  text-white">Egypt</span>
         </div>
