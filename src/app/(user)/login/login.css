@@ -42,9 +42,12 @@
   .login-cotent{
     border:2px solid gray;
     padding:20px 100px;
-    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
-
+    box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.6);
   }
+  .white-icon {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(-20deg);
+  }
+  
   .login-submit-button {
     padding: 10px 120px; 
     border: none; 

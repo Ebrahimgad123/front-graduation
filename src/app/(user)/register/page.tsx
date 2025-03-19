@@ -29,7 +29,8 @@ const Register = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container text-white">
+      <div className='login-cotent'>
       <div className="login-content">
         <img src="/Images/logoTrave.png" alt="Logo" className="login-logo" />
         <h1 className="login-title">Sign Up</h1>
@@ -79,13 +80,14 @@ const Register = () => {
             <img src="/Images/facebook.svg" alt="Facebook" className="social-icon" />
           </button>
           <button className="social-button" onClick={() => handleLogin('Apple')}>
-            <img src="/Images/apple.svg" alt="Apple" className="social-icon" />
+            <img src="/Images/apple.svg" alt="Apple" className="social-icon white-icon" />
           </button>
         </div>
         
         <div>
           <div>Have an account? <Link className='link-sign-up' href="/login">Sign In</Link></div>
         </div> 
+      </div>
       </div>
     </div>
   );
