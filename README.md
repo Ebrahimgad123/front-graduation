@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TRAVMATE 📌📌
 
-## Getting Started
+## OVERVIEW
+TravMate is an advanced travel companion application designed to enhance the travel experience by allowing users to book professional tour guides, explore destinations, and handle payments seamlessly. The app ensures a smooth authentication process using Google login.
 
-First, run the development server:
+## FEATURES
+- **Tour Guide Booking**: Users can search for and book expert tour guides for their trips.
+- **Location Browsing**: Discover various travel destinations, landmarks, and points of interest.
+- **Secure Payments**: Integrated payment solutions to ensure safe and hassle-free transactions.
+- **Google Authentication**: Enables users to sign in effortlessly using their Google accounts.
+- **User Dashboard**: A personalized dashboard for managing bookings, payments, and preferences
+- **Reviews & Ratings**: Users can leave feedback and rate tour guides for better recommendations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## TECH STACK
+- **Frontend**: Next.js (App Router for navigation and rendering)
+- **Backend**: Node.js with Express.js for handling API requests
+- **Database**: MongoDB for scalable and efficient data storage
+- **Authentication**: passportjs Authentication (Google Sign-in for secure login)
+- **Payment Integration**: Stripe for handling transactions securely
+- **Hosting & Deployment**:
+  - **Frontend**: Vercel for fast and scalable hosting
+  - **Backend**: Hosted on Vercel
+  - **Database**: MongoDB Atlas for cloud-based data management
+
+## GETTING STARTED
+### PREREQUISITES
+- Ensure **Node.js** is installed on your system.
+- Set up a **MongoDB** instance (either locally or using MongoDB Atlas).
+- Have access to Firebase for authentication and Stripe for payments.
+
+### INSTALLATION
+#### 1. Clone the Repository
+```sh
+ git clone (https://github.com/Ebrahimgad123/front-graduation)
+ cd travmate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 2. Install Dependencies
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### 3. Set Up Environment Variables
+Create a `.env` file in the root directory and add the following:
+```env
+PORT=8080
+MONGO_URI=
+NODE_ENV=
+JWT_SECRET=
+STRIPE_KEY=
+# auth-google
+GOOGLE_CLIENT_ID=
+GOOGLE_SECRET_ID=
+CALLBACK_URL=
+COOKIE_KEY=
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
+#### 4. Run the Development Server
+```sh
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+### RUNNING THE BACKEND
+#### 1. Navigate to the Backend Directory
+```sh
+cd backend
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 2. Install Dependencies
+```sh
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### 3. Start the Server
+```sh
+npm start
+```
 
-## Deploy on Vercel
+## API ENDPOINTS
+| METHOD | ENDPOINT | DESCRIPTION |
+|--------|---------|-------------|
+| POST | `/api/auth/google` | Authenticate users via Google |
+| POST | `/api/login` | Log in users with email and password |
+| POST | `/api/register` | Register new users |
+| GET | `/api/places` | Fetch available travel locations |
+| POST | `/api/booking` | Book a tour guide |
+| POST | `/api/payment` | Process payment transactions |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## DEPLOYMENT
+- **Frontend Deployment**: Hosted on **Vercel** for fast and scalable performance.
+- **Backend Deployment**: Can be hosted on **Vercel, AWS, or Heroku**.
+- **Database**: Uses **MongoDB Atlas** for cloud-based, highly scalable storage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## CONTRIBUTING
+We welcome contributions! Feel free to open **issues**, submit **pull requests**, or suggest **improvements** to make TravMate even better.
+
+## LICENSE
+This project is licensed under the **MIT License**, allowing open collaboration and usage.
+
+---
+
+**TravMate - Your Ultimate Travel Companion! 🌍✈️**
+
