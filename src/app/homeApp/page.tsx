@@ -13,6 +13,7 @@ import Image from 'next/image'
 import { toggleDarkMode } from '../store/themeSlice';
 import { Button } from "@mui/material";
 import { Brightness4, Brightness7 } from '@mui/icons-material';
+import Navbar from "../Navbar/page";
 
 
 interface Destination {
@@ -85,155 +86,99 @@ const TravelApp = () => {
        const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
    
   return (
-    <div className="p-4 bg-blue-950 text-white">
-     <div className="flex justify-between items-center">
-    
-     <div className="relative flex items-center justify-around mb-4">
-      <div>
-        <Button
-          className=" ml-0 text-white"
-          sx={{mt:2 }}
-          onClick={toggleDropdown} 
-          startIcon={<FontAwesomeIcon icon={faCog} />}
-        >
-        </Button>
-
-   
-        {isDropdownOpen && (
-          <div className="absolute left-5 mt-2 bg-blue-900  shadow-lg rounded-md w-40 p-2 z-10">
-            <div className="flex items-center space-x-4 cursor-pointer" onClick={() => dispatch(toggleDarkMode())}>
-              {darkMode ? <Brightness7 className="text-green-600" /> : <Brightness4 className="text-blue-400"/>}
-              <span className="text-sm text-white">Change Theme</span>
-            </div>
-            <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/favorites')}>
-              <FontAwesomeIcon className="text-red-500" icon={faHeart} />
-              <span className="text-sm text-white">Favorites{`(${favorites.length})`}</span>
-            </div>
-            <div className="flex items-center space-x-2 cursor-pointer mt-2" onClick={() => router.push('/homeApp/profile')}>
-              <FontAwesomeIcon className="text-blue-500" icon={faUser} />
-              <span className="text-sm text-white">Profile</span>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-       <div className="relative">
-         <input
-            onChange={(e) => setSearch(e.target.value)}
-            type="text"
-            className="border rounded-full pl-10 pr-4 py-2 w-full lg:w-[700px] xl:w-[800px]"
-            placeholder="Search for Places"
+    <div>
+      <Navbar />
+      <div className="p-4 bg-blue-950 text-white">
+       
+       
+        <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <Image
+            width={300}
+            height={300}
+            src="/Images/welcome.jpg"
+            alt="World map with regions labeled"
+            className="w-[100%] h-[400px] rounded-lg sm:w-[45%]"
           />
-          <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-3 text-gray-500" />
-          {search && (
-          <ul className="absolute top-14 left-0 w-full bg-white shadow-lg border border-gray-200 rounded-lg max-h-60 overflow-y-auto z-10">
-            {filteredDestinations.length > 0 ? (
-              filteredDestinations.map((destination) => (
-                <li key={destination._id} className="flex justify-between items-center p-2 hover:bg-gray-100 rounded-lg">
-                  <span className="text-lg font-medium  text-black">{destination.name}</span>
-                  <Image 
-                    src={destination.image}
-                    alt={destination.name}
-                    width={90}
-                    height={60}
-                    className="rounded-xl object-cover ml-4"
-                  />
-                </li>
-              ))
-            ) : (
-              <p className="text-center text-gray-500">No results found</p>
-            )}
-          </ul>
-        )}
-
+          <Image
+           width={300}
+           height={300}
+            src="/Images/map.jpg"
+            alt="World map with regions labeled"
+            className="w-[100%] h-[400px] rounded-lg sm:w-[45%] image2"
+          />
         </div>
-      </div>
-      <div className="relative mb-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
-        <Image
-          width={300}
-          height={300}
-          src="/Images/welcome.jpg"
-          alt="World map with regions labeled"
-          className="w-[100%] h-[400px] rounded-lg sm:w-[45%]"
-        />
-        <Image
-         width={300}
-         height={300}
-          src="/Images/map.jpg"
-          alt="World map with regions labeled"
-          className="w-[100%] h-[400px] rounded-lg sm:w-[45%] image2"
-        />
-      </div>
-      
-      <div className="bg-black p-4 rounded-lg mb-4 flex items-center bg-blue-900 text-white">
-        <Image
-          width={200}
-          height={200}
-          src="/Images/welcome.jpeg"
-          alt="Egypt flag"
-          className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
-        <div >
-          <span className="block  text-white">dicover {destinations.length} destination in </span>
-          <span className="block font-bold  text-white">Egypt</span>
-        </div>
-        <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
-      </div>
-      <h2 className="text-xl font-bold mb-4"> advices for Trip</h2>
-      <div className="flex overflow-x-auto mb-4 scrollbar-hidden"> {/* إضافة class هنا */}
-        {travelTips.map((tip) => (
-          <div key={tip.id} className="min-w-[200px] mx-2">
-            <h3 className="font-bold">{tip.title}</h3>
-            <span className="text-gray-500">{tip.description}</span>
+        
+        <div className="bg-black p-4 rounded-lg mb-4 flex items-center bg-blue-900 text-white">
+          <Image
+            width={200}
+            height={200}
+            src="/Images/welcome.jpeg"
+            alt="Egypt flag"
+            className="w-[50px] h-[50px] rounded-[100%]  mr-4 "/>
+          <div >
+            <span className="block  text-white">dicover {destinations.length} destination in </span>
+            <span className="block font-bold  text-white">Egypt</span>
           </div>
-        ))}
-      </div>
-
-      <h2 className="text-xl font-bold mb-4">Recommended Places</h2>
-      <div className="flex overflow-x-auto  hide-scrollbar" >
-     {destinations.map((destination, index) => (
-    <div
-      key={`${destination._id}-${index}`} 
-      className="min-w-[300px] mr-4"
-      style={{
-        scrollSnapAlign: "start",
-      }}
-    >
-      <div className="relative">
-         <Image
-          width={200}
-          height={200}
-          onClick={() => router.push(`/homeApp/${destination._id}`)}
-          src={destination.image}
-          alt={destination.name}
-          className="w-full h-[200px] object-cover rounded-lg"
-        />
-       <div 
-        onClick={() => addToFavorites(destination._id, destination.name, destination.image)} 
-        className="absolute top-2 right-2 px-2 py-1 rounded-full border border-white text-red-500 hover:text-black active:text-white cursor-pointer"
+          <FontAwesomeIcon icon={faLocationArrow} className="ml-auto" />
+        </div>
+        <h2 className="text-xl font-bold mb-4"> advices for Trip</h2>
+        <div className="flex overflow-x-auto mb-4 scrollbar-hidden"> {/* إضافة class هنا */}
+          {travelTips.map((tip) => (
+            <div key={tip.id} className="min-w-[200px] mx-2">
+              <h3 className="font-bold">{tip.title}</h3>
+              <span className="text-gray-500">{tip.description}</span>
+            </div>
+          ))}
+        </div>
+  
+        <h2 className="text-xl font-bold mb-4">Recommended Places</h2>
+        <div className="flex overflow-x-auto  hide-scrollbar" >
+       {destinations.map((destination, index) => (
+      <div
+        key={`${destination._id}-${index}`} 
+        className="min-w-[300px] mr-4"
+        style={{
+          scrollSnapAlign: "start",
+        }}
       >
-        <FontAwesomeIcon icon={faHeart} />
-      </div>
-
-        <div className="absolute bottom-2 left-2 bg-black text-white px-2 py-1 rounded-full">
-         
-          {localStorage.getItem('location') ? (
-              <>
-                <FontAwesomeIcon icon={faLocationArrow} />{" "}
-                <bdi>{destination.distanceFromUser} كم</bdi>
-              </>
-            ) : ''}
-
+        <div className="relative">
+           <Image
+            width={200}
+            height={200}
+            onClick={() => router.push(`/homeApp/${destination._id}`)}
+            src={destination.image}
+            alt={destination.name}
+            className="w-full h-[200px] object-cover rounded-lg"
+          />
+         <div 
+          onClick={() => addToFavorites(destination._id, destination.name, destination.image)} 
+          className="absolute top-2 right-2 px-2 py-1 rounded-full border border-white text-red-500 hover:text-black active:text-white cursor-pointer"
+        >
+          <FontAwesomeIcon icon={faHeart} />
+        </div>
+  
+          <div className="absolute bottom-2 left-2 bg-black text-white px-2 py-1 rounded-full">
+           
+            {localStorage.getItem('location') ? (
+                <>
+                  <FontAwesomeIcon icon={faLocationArrow} />{" "}
+                  <bdi>{destination.distanceFromUser} كم</bdi>
+                </>
+              ) : ''}
+  
+          </div>
+        </div>
+        <div className="mt-2 mb-24">
+          <h3 className="font-bold">{destination.name}</h3>
+          <span className="text-gray-500">{destination.country}</span>
         </div>
       </div>
-      <div className="mt-2 mb-24">
-        <h3 className="font-bold">{destination.name}</h3>
-        <span className="text-gray-500">{destination.country}</span>
-      </div>
+    ))}
+        </div>
+        
+  </div>
     </div>
-  ))}
-      </div>
-      
-</div>
+   
   );
 };
 
