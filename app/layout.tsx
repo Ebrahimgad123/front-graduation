@@ -1,25 +1,14 @@
 'use client';
 import { Provider, useSelector } from 'react-redux';
-import localFont from 'next/font/local';
 import './globals.css';
-import store from './store/store';
+import store from '../store/store';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { lightTheme, darkTheme } from './theme'; // تأكد من وجود هذه الملفات
-import { RootState } from './store/store'; // استيراد RootState
+import { lightTheme, darkTheme } from '../theme';
+import { RootState } from '../store/store'; 
 import { SessionProvider } from "next-auth/react";
 
 // تحميل الخطوط المحلية
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
   // تحديد النوع للـ state باستخدام RootState
@@ -45,7 +34,7 @@ export default function RootLayout({
           <title>Trav mate</title>
           <meta name="description" />
         </head>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+        <body className={`font-sans antialiased overflow-x-hidden pt-[12vh]`}>
           <Provider store={store}>
           <ThemeWrapper>
               {children}

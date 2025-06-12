@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavorite, clearFavorites } from '../../store/favoritesSlice'; 
+import { removeFavorite, clearFavorites } from '../../../store/favoritesSlice'; 
 import { useRouter } from 'next/navigation';
 
 interface FavoriteItem {
@@ -25,7 +25,7 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div className="p-4 bg-blue-900 text-white">
+    <div className="p-4 bg-blue-900 text-white min-h-screen">
       {favorites.length === 0 ? (
         <p className="text-2xl"> No favorites item</p>
       ) : (

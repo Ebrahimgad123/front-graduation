@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://backend10-henna.vercel.app/api/login", {
+      const response = await fetch("https://backend-trav.vercel.app/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
   // دالة تسجيل الدخول عبر Google
   const handleGoogleAuth = async () => {
     try {
-      router.push("https://backend10-henna.vercel.app/api/auth/google");
+      router.push("https://backend-trav.vercel.app/auth/google");
     } catch (error) {
       console.error("Error:", error);
     }

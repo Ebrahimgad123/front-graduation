@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useSelector } from "react-redux";
-import { selectLocation } from '../app/store/locationSlice';
+import { selectLocation } from '../store/locationSlice';
 
 declare global {
   interface HTMLElement {
@@ -13,16 +13,16 @@ declare global {
 }
 
 const LeafletMap = () => {
-  const coordinates = useSelector(selectLocation); // الحصول على الإحداثيات من الـ Redux store
-  const [destinations, setDestinations] = useState<any[]>([]); // تعديل النوع إلى any[]
-  const [loading, setLoading] = useState(false); // حالة تحميل البيانات
-  const [error, setError] = useState<string | null>(null); // حالة الخطأ
+  const coordinates = useSelector(selectLocation);
+  const [destinations, setDestinations] = useState<any[]>([]); 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState<string | null>(null); 
 
   useEffect(() => {
     // التأكد من تحميل البيانات فقط عندما تتوفر الإحداثيات
     if (coordinates?.lat && coordinates?.lng) {
       const fetchCities = async () => {
-        setLoading(true); // تفعيل حالة التحميل
+        setLoading(true); 
         try {
           const response = await fetch(`https://backend10-henna.vercel.app/api/nearby?latitude=${coordinates.lat}&longitude=${coordinates.lng}`);
           if (!response.ok) {
@@ -34,7 +34,7 @@ const LeafletMap = () => {
         } catch (error: any) {
           setError('Error fetching cities: ' + error.message); // تخزين الخطأ
         } finally {
-          setLoading(false); // إنهاء حالة التحميل
+          setLoading(false); 
         }
       };
 
@@ -42,7 +42,7 @@ const LeafletMap = () => {
     }
   }, [coordinates]);
 
-  // تنظيف الخريطة عند مغادرة الصفحة
+
   useEffect(() => {
     return () => {
       if (typeof window !== 'undefined' && window.L) {

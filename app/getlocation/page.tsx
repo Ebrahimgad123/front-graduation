@@ -1,7 +1,7 @@
 "use client";
 import React, { useState,useEffect} from 'react';
 import { useDispatch } from 'react-redux';
-import { setLocation } from '../store/locationSlice'; 
+import { setLocation } from '../../store/locationSlice'; 
 import './location.css'; 
 import { useRouter } from 'next/navigation';
 import { ClipLoader } from "react-spinners";
