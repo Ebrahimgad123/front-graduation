@@ -34,7 +34,7 @@ export default function RootLayout({
           <title>Trav mate</title>
           <meta name="description" />
         </head>
-        <body className={`font-sans antialiased overflow-x-hidden pt-[12vh]`}>
+        <body className={`font-sans antialiased overflow-x-hidden `}>
           <Provider store={store}>
           <ThemeWrapper>
               {children}
